@@ -1,0 +1,1 @@
+../../../ParseUI/ParseUI/Classes/Internal/Cells/PFActivityIndicatorTableViewCell.h

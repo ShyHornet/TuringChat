@@ -1,0 +1,1 @@
+../../../ParseUI/ParseUI/Classes/Cells/PFPurchaseTableViewCell.h
