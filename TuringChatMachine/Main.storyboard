@@ -385,7 +385,7 @@
                             </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.27450980392156865" green="0.74509803921568629" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.99215686274509807" green="0.70588235294117652" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="QiR-tl-yjV" secondAttribute="centerX" id="131-vy-JjR"/>
                             <constraint firstItem="znj-c5-sYl" firstAttribute="leading" secondItem="F4y-ZN-vgE" secondAttribute="leading" constant="554" id="6ad-sL-v6t"/>
@@ -431,17 +431,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mn3-tI-dz0">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6O-Ll-Byu">
-                                        <rect key="frame" x="15" y="170" width="241" height="34"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="241" id="A7O-J8-baV"/>
-                                            <constraint firstAttribute="height" constant="34" id="pjA-Ir-tp8"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="21"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="E7f-sY-6jO">
                                         <rect key="frame" x="75" y="34" width="120" height="120"/>
                                         <animations/>
@@ -463,9 +452,20 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="logOutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CnV-2K-dVf"/>
+                                            <action selector="logOutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zzQ-SF-W4s"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6O-Ll-Byu">
+                                        <rect key="frame" x="15" y="170" width="241" height="34"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="241" id="A7O-J8-baV"/>
+                                            <constraint firstAttribute="height" constant="34" id="pjA-Ir-tp8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="21"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -487,15 +487,15 @@
                             </view>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="1" green="0.75394853949999996" blue="0.34447615129999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.23137254901960785" green="0.69411764705882351" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="Mn3-tI-dz0" secondAttribute="centerY" id="GXW-fw-IO5"/>
                             <constraint firstAttribute="centerX" secondItem="Mn3-tI-dz0" secondAttribute="centerX" id="Sau-Zs-gcw"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="logInStatus" destination="dpI-nj-meO" id="S8m-aM-yAP"/>
-                        <outlet property="usernameLabel" destination="m6O-Ll-Byu" id="dy6-hI-I3B"/>
+                        <outlet property="logInStatus" destination="dpI-nj-meO" id="0y3-mY-88a"/>
+                        <outlet property="usernameLabel" destination="m6O-Ll-Byu" id="V82-Cd-Tco"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

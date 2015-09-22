@@ -28,9 +28,18 @@ class HomeViewController: UIViewController {
                 self.presentViewController(viewController, animated: true, completion: nil)
             })
         }else{
-            logInStatus.titleLabel?.text = "欢迎"
-            self.usernameLabel.text = PFUser.currentUser()?.username
+            let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(self.view.frame.width/2 - 25,100, 50, 50)) as UIActivityIndicatorView
+            spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
             
+            self.view.addSubview(spinner)
+            spinner.startAnimating()
+            self.usernameLabel.text = "@" + (PFUser.currentUser()?.username)!
+            delay(seconds: 1.5, completion: { () -> () in
+                let ChatVC = ChatViewController()
+                let naviVC = UINavigationController(rootViewController: ChatVC)
+               spinner.stopAnimating()
+                self.presentViewController(naviVC, animated:true, completion: nil)
+            })
         
         }
     }

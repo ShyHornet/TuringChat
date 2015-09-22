@@ -34,12 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Analytics successed!")
             
         }
-        let welcomeVC:WelcomeViewController = WelcomeViewController()
+         let HomeVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home")
+     
 
         
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0.05, green: 0.47, blue: 0.91, alpha: 1.0)
+        UINavigationBar.appearance().barTintColor = UIColor(red:0.27, green:0.75, blue:0.91, alpha:1)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         
@@ -47,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let frame = UIScreen.mainScreen().bounds
         window = UIWindow(frame: frame)
         
-        window!.rootViewController = welcomeVC
+        window!.rootViewController = HomeVC
         window!.makeKeyAndVisible()
         return true
     }

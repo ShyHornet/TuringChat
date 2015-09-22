@@ -53,9 +53,7 @@ class LoginViewController: UIViewController {
                 
                 return
             }
-            let alert = UIAlertView(title: "成功", message: "已登陆", delegate: self, cancelButtonTitle: "确定")
-            alert.show()
-            
+
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home")
                 self.presentViewController(viewController, animated: true, completion: nil)

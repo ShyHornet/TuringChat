@@ -193,7 +193,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         self.initData()
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
-        
+        title = "灵灵"
         
         
         tableView = UITableView(frame: view.bounds, style: .Plain)
