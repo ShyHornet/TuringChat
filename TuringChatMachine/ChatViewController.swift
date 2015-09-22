@@ -386,7 +386,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         tableView.endUpdates()
         tableViewScrollToBottomAnimated(false)
         
-        Alamofire.request(.GET, NSURL(string: api_url)!, parameters: ["key":api_key,"info":question,"userid":userId]).responseJSON(options: NSJSONReadingOptions.MutableContainers) { _,_,data   in
+        Alamofire.request(.GET, NSURL(string: api_url)!, parameters: ["key":api_key,"info":question,"userid":PFUser.currentUser()!.objectId! as String]).responseJSON(options: NSJSONReadingOptions.MutableContainers) { _,_,data   in
             
             
             guard data.isSuccess else{

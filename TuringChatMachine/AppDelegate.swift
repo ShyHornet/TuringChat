@@ -12,14 +12,12 @@ import ParseUI
 import Alamofire
 let api_key = "65ea3d47b58d8866bed4182af741a60b"
 let api_url = "http://www.tuling123.com/openapi/api"
-let userId = "eaew233aswq"
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var message:[Message] = []
-    var objects:[PFObject] = []
+
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

@@ -10,7 +10,6 @@
 		6E6018F81BA0390700E8AC47 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E6018F71BA0390700E8AC47 /* libsqlite3.dylib */; };
 		6EC945DA1B968F71001A8943 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC945D91B968F71001A8943 /* AppDelegate.swift */; };
 		6EC945E11B968F71001A8943 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EC945E01B968F71001A8943 /* Images.xcassets */; };
-		6EC945E41B968F71001A8943 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC945E21B968F71001A8943 /* LaunchScreen.xib */; };
 		6EC945F01B968F71001A8943 /* TuringChatMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC945EF1B968F71001A8943 /* TuringChatMachineTests.swift */; };
 		6EC945FA1B968FD5001A8943 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 6EC945F91B968FD5001A8943 /* Podfile */; };
 		6EC945FF1B9691C7001A8943 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC945FB1B9691C7001A8943 /* Message.swift */; };
@@ -24,6 +23,7 @@
 		8721184D1BB102E80088B2B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872118481BB102E80088B2B4 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8721184E1BB102E80088B2B4 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872118491BB102E80088B2B4 /* ResetPasswordViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8721184F1BB102E80088B2B4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721184A1BB102E80088B2B4 /* SignUpViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		872118511BB13EBB0088B2B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		87D1C6441BAFB6BF009B8AFA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D1C6431BAFB6BF009B8AFA /* CloudKit.framework */; };
 		87E001641BAFA084007ABC42 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E001631BAFA084007ABC42 /* WebViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -42,12 +42,10 @@
 		127F756A1F6DCE74E2B2AE10 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A965B8ABB7841234BB572FA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6E6018F71BA0390700E8AC47 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		6EC802B51BA0620B009A2C53 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6EC945D41B968F71001A8943 /* TuringChatMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuringChatMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC945D81B968F71001A8943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EC945D91B968F71001A8943 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EC945E01B968F71001A8943 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6EC945E31B968F71001A8943 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6EC945E91B968F71001A8943 /* TuringChatMachineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuringChatMachineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC945EE1B968F71001A8943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EC945EF1B968F71001A8943 /* TuringChatMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuringChatMachineTests.swift; sourceTree = "<group>"; };
@@ -63,6 +61,7 @@
 		872118481BB102E80088B2B4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		872118491BB102E80088B2B4 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		8721184A1BB102E80088B2B4 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87D1C6421BAFB1E0009B8AFA /* TuringChatMachine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TuringChatMachine.entitlements; sourceTree = "<group>"; };
 		87D1C6431BAFB6BF009B8AFA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		87E001631BAFA084007ABC42 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +158,6 @@
 				6E0923591BA7A9A800C498C1 /* model */,
 				6EE18E031BA26EFB00944C87 /* controllers */,
 				6EC945E01B968F71001A8943 /* Images.xcassets */,
-				6EC945E21B968F71001A8943 /* LaunchScreen.xib */,
 				6EC945D71B968F71001A8943 /* Supporting Files */,
 			);
 			path = TuringChatMachine;
@@ -196,6 +194,7 @@
 			children = (
 				6E0923581BA7A98A00C498C1 /* chatPage */,
 				6E0923571BA7A96D00C498C1 /* welcomePage */,
+				872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -300,9 +299,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EC945E41B968F71001A8943 /* LaunchScreen.xib in Resources */,
 				6EC945FA1B968FD5001A8943 /* Podfile in Resources */,
 				6EC945E11B968F71001A8943 /* Images.xcassets in Resources */,
+				872118511BB13EBB0088B2B4 /* LaunchScreen.storyboard in Resources */,
 				872118451BB0F4210088B2B4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,18 +399,6 @@
 			targetProxy = 6EC945EA1B968F71001A8943 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		6EC945E21B968F71001A8943 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6EC945E31B968F71001A8943 /* Base */,
-				6EC802B51BA0620B009A2C53 /* zh-Hans */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		6EC945F11B968F71001A8943 /* Debug */ = {
