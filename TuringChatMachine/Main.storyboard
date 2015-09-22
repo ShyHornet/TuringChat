@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Reset Password View Controller-->
         <scene sceneID="sAg-yN-NMq">
             <objects>
-                <viewController storyboardIdentifier="ResetPassword" id="KVE-cM-mVc" customClass="ResetPasswordViewController" customModule="ParseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResetPassword" id="KVE-cM-mVc" customClass="ResetPasswordViewController" customModule="TuringChatMachine" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xa8-Rp-NUF"/>
                         <viewControllerLayoutGuide type="bottom" id="RfN-LF-5Ps"/>
@@ -20,25 +19,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF5-3L-Fvb">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ParseDemo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WIB-lU-zid">
-                                        <rect key="frame" x="80" y="20" width="112" height="58"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="112" id="Gdz-AL-ooa"/>
-                                            <constraint firstAttribute="height" constant="58" id="OHM-W1-d0d"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kkg-AR-t1r">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kkg-AR-t1r">
                                         <rect key="frame" x="13" y="133" width="245" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="I0k-90-9Cq"/>
                                             <constraint firstAttribute="width" constant="245" id="TT1-Ci-fz3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGN-dH-fMV">
@@ -48,23 +36,31 @@
                                             <constraint firstAttribute="width" constant="178" id="KAy-pI-f84"/>
                                             <constraint firstAttribute="height" constant="30" id="QcO-c3-N7n"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
-                                        <state key="normal" title="Reset Password">
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="24"/>
+                                        <state key="normal" title="重置密码">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-3V-vaa">
+                                        <rect key="frame" x="62" y="19" width="146" height="51"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="146" id="FRd-H2-vzm"/>
+                                            <constraint firstAttribute="height" constant="51" id="JKE-Nx-lcy"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="WIB-lU-zid" secondAttribute="centerX" constant="-1" id="0Ax-Hp-rRf"/>
                                     <constraint firstItem="EGN-dH-fMV" firstAttribute="centerX" secondItem="kkg-AR-t1r" secondAttribute="centerX" constant="-0.5" id="7ZP-Gl-k48"/>
-                                    <constraint firstItem="WIB-lU-zid" firstAttribute="centerX" secondItem="kkg-AR-t1r" secondAttribute="centerX" constant="0.5" id="EYL-Sr-R9d"/>
+                                    <constraint firstItem="kkg-AR-t1r" firstAttribute="top" secondItem="4W9-3V-vaa" secondAttribute="bottom" constant="63" id="DLL-6F-agl"/>
+                                    <constraint firstItem="4W9-3V-vaa" firstAttribute="centerX" secondItem="hF5-3L-Fvb" secondAttribute="centerX" id="Q9t-vn-yIM"/>
                                     <constraint firstAttribute="height" constant="346" id="T1c-WS-ena"/>
-                                    <constraint firstItem="kkg-AR-t1r" firstAttribute="top" secondItem="WIB-lU-zid" secondAttribute="bottom" constant="55" id="Zru-m9-S3v"/>
+                                    <constraint firstItem="4W9-3V-vaa" firstAttribute="top" secondItem="hF5-3L-Fvb" secondAttribute="top" constant="19" id="YIB-0a-Odu"/>
+                                    <constraint firstItem="EGN-dH-fMV" firstAttribute="centerX" secondItem="hF5-3L-Fvb" secondAttribute="centerX" id="djW-j5-C5c"/>
                                     <constraint firstItem="EGN-dH-fMV" firstAttribute="top" secondItem="kkg-AR-t1r" secondAttribute="bottom" constant="57" id="dlg-Pc-Vbc"/>
-                                    <constraint firstItem="WIB-lU-zid" firstAttribute="top" secondItem="hF5-3L-Fvb" secondAttribute="top" constant="20" id="kQN-qE-gj7"/>
                                     <constraint firstAttribute="width" constant="270" id="kpZ-fq-aHX"/>
                                 </constraints>
                             </view>
@@ -77,7 +73,7 @@
                                     <constraint firstAttribute="width" constant="30" id="oeH-1D-fOY"/>
                                 </constraints>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="close">
+                                <state key="normal" image="close-1">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -120,7 +116,7 @@
         <!--Login View Controller-->
         <scene sceneID="U56-pu-fWm">
             <objects>
-                <viewController storyboardIdentifier="Login" id="EAn-nz-Zos" customClass="LoginViewController" customModule="ParseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" id="EAn-nz-Zos" customClass="LoginViewController" customModule="TuringChatMachine" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aop-wn-DRR"/>
                         <viewControllerLayoutGuide type="bottom" id="hc5-aR-wUr"/>
@@ -132,42 +128,35 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Ye-BFH">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ParseDemo" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZS5-eF-mXq">
-                                        <rect key="frame" x="79" y="20" width="112" height="58"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sr2-Qf-iN0">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sr2-Qf-iN0">
                                         <rect key="frame" x="13" y="133" width="245" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="NVy-eN-hEp"/>
                                             <constraint firstAttribute="width" constant="245" id="Rji-jO-DWJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIn-wW-qg4">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIn-wW-qg4">
                                         <rect key="frame" x="13" y="80" width="245" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="0ss-nZ-Czd"/>
                                             <constraint firstAttribute="width" constant="245" id="Xxt-Mj-RqY"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGv-H4-2DO">
-                                        <rect key="frame" x="103" y="195" width="63" height="45"/>
+                                        <rect key="frame" x="104" y="195" width="63" height="45"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="2jG-nJ-tEV"/>
                                             <constraint firstAttribute="width" constant="63" id="Kgr-wi-9bR"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
-                                        <state key="normal" title="Login">
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="25"/>
+                                        <state key="normal" title="登陆">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -193,8 +182,8 @@
                                             <constraint firstAttribute="height" constant="33" id="Jmi-jP-T9j"/>
                                             <constraint firstAttribute="width" constant="64" id="jkD-6l-s5S"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                        <state key="normal" title="Sign Up">
+                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="15"/>
+                                        <state key="normal" title="注册">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -202,6 +191,22 @@
                                             <segue destination="rMA-Qa-Dfn" kind="presentation" id="lFz-US-Dfx"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ncB-xP-Rxv">
+                                        <rect key="frame" x="62" y="8" width="146" height="51"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="146" id="4eF-v2-r0d"/>
+                                            <constraint firstAttribute="width" constant="146" id="JU4-Np-MOL"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="aO9-T5-6cU"/>
+                                            <constraint firstAttribute="height" constant="51" id="cHG-5H-nPo"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="4eF-v2-r0d"/>
+                                                <exclude reference="aO9-T5-6cU"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpE-ed-7RH">
                                         <rect key="frame" x="75" y="259" width="121" height="33"/>
                                         <animations/>
@@ -209,8 +214,8 @@
                                             <constraint firstAttribute="height" constant="33" id="fji-eB-45v"/>
                                             <constraint firstAttribute="width" constant="121" id="yLU-Ku-37y"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                        <state key="normal" title="Forgot Password?">
+                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="15"/>
+                                        <state key="normal" title="忘记密码?">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -219,44 +224,30 @@
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="ZS5-eF-mXq" secondAttribute="centerX" id="2jb-u2-CXg"/>
                                     <constraint firstItem="eIn-wW-qg4" firstAttribute="centerX" secondItem="sr2-Qf-iN0" secondAttribute="centerX" id="4vZ-4h-wAp"/>
-                                    <constraint firstItem="eIn-wW-qg4" firstAttribute="top" secondItem="ZS5-eF-mXq" secondAttribute="bottom" constant="3.5" id="6dF-FN-4Ak"/>
                                     <constraint firstAttribute="centerX" secondItem="EGv-H4-2DO" secondAttribute="centerX" id="9UB-Xw-SwR"/>
                                     <constraint firstItem="EGv-H4-2DO" firstAttribute="centerX" secondItem="sr2-Qf-iN0" secondAttribute="centerX" constant="-0.5" id="AaM-Ow-RSs"/>
                                     <constraint firstItem="sr2-Qf-iN0" firstAttribute="top" secondItem="eIn-wW-qg4" secondAttribute="bottom" constant="23" id="B4D-3c-sd8"/>
                                     <constraint firstAttribute="centerX" secondItem="sr2-Qf-iN0" secondAttribute="centerX" id="C6k-p0-rLx"/>
                                     <constraint firstAttribute="centerX" secondItem="zJD-a7-y8O" secondAttribute="centerX" id="CK3-3W-P9o"/>
-                                    <constraint firstItem="ZS5-eF-mXq" firstAttribute="centerX" secondItem="eIn-wW-qg4" secondAttribute="centerX" constant="0.5" id="Hps-kG-uB5"/>
                                     <constraint firstAttribute="centerX" secondItem="eIn-wW-qg4" secondAttribute="centerX" id="NNC-Ks-fpq"/>
                                     <constraint firstAttribute="height" constant="346" id="PML-3r-mbO"/>
-                                    <constraint firstItem="eIn-wW-qg4" firstAttribute="top" secondItem="ZS5-eF-mXq" secondAttribute="bottom" constant="2" id="PMd-sq-Buw"/>
                                     <constraint firstItem="EGv-H4-2DO" firstAttribute="top" secondItem="sr2-Qf-iN0" secondAttribute="bottom" constant="32" id="RZl-hQ-V85"/>
-                                    <constraint firstItem="eIn-wW-qg4" firstAttribute="centerX" secondItem="ZS5-eF-mXq" secondAttribute="centerX" constant="-0.25" id="VvG-Ii-9VC"/>
-                                    <constraint firstItem="ZS5-eF-mXq" firstAttribute="top" secondItem="8ed-Ye-BFH" secondAttribute="top" constant="20" id="XyW-0x-cdf"/>
-                                    <constraint firstAttribute="centerX" secondItem="ZS5-eF-mXq" secondAttribute="centerX" constant="-0.5" id="adg-aL-Cfo"/>
+                                    <constraint firstItem="ncB-xP-Rxv" firstAttribute="top" secondItem="8ed-Ye-BFH" secondAttribute="top" constant="8" id="ToV-WW-B9u"/>
+                                    <constraint firstItem="ncB-xP-Rxv" firstAttribute="centerX" secondItem="8ed-Ye-BFH" secondAttribute="centerX" id="Y5D-jT-4HX"/>
                                     <constraint firstAttribute="centerX" secondItem="fF4-aH-hIA" secondAttribute="centerX" id="dVc-c0-pJb"/>
+                                    <constraint firstItem="eIn-wW-qg4" firstAttribute="top" secondItem="ncB-xP-Rxv" secondAttribute="bottom" constant="21" id="f0s-dd-sa1"/>
                                     <constraint firstItem="sr2-Qf-iN0" firstAttribute="top" secondItem="eIn-wW-qg4" secondAttribute="bottom" constant="23" id="hxc-cn-2dy"/>
-                                    <constraint firstAttribute="centerY" secondItem="ZS5-eF-mXq" secondAttribute="centerY" id="iwE-3s-WAH"/>
                                     <constraint firstAttribute="width" constant="270" id="kvo-EY-sLf"/>
                                     <constraint firstAttribute="centerX" secondItem="fpE-ed-7RH" secondAttribute="centerX" id="mRR-C1-qyz"/>
                                     <constraint firstItem="EGv-H4-2DO" firstAttribute="top" secondItem="sr2-Qf-iN0" secondAttribute="bottom" constant="32" id="oZv-0C-eyi"/>
-                                    <constraint firstAttribute="centerX" secondItem="ZS5-eF-mXq" secondAttribute="centerX" constant="-0.75" id="ob8-vP-Wcv"/>
                                     <constraint firstItem="zJD-a7-y8O" firstAttribute="top" secondItem="fpE-ed-7RH" secondAttribute="bottom" constant="-8" id="sYS-Jy-mdw"/>
-                                    <constraint firstItem="ZS5-eF-mXq" firstAttribute="top" secondItem="8ed-Ye-BFH" secondAttribute="top" constant="20" id="tBM-1K-ctT"/>
                                     <constraint firstItem="fpE-ed-7RH" firstAttribute="top" secondItem="EGv-H4-2DO" secondAttribute="bottom" constant="19" id="usv-jT-v33"/>
                                     <constraint firstItem="fF4-aH-hIA" firstAttribute="top" secondItem="zJD-a7-y8O" secondAttribute="bottom" constant="-4" id="zPz-2V-xhg"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="4vZ-4h-wAp"/>
-                                        <exclude reference="6dF-FN-4Ak"/>
-                                        <exclude reference="VvG-Ii-9VC"/>
-                                        <exclude reference="Hps-kG-uB5"/>
-                                        <exclude reference="adg-aL-Cfo"/>
-                                        <exclude reference="iwE-3s-WAH"/>
-                                        <exclude reference="ob8-vP-Wcv"/>
-                                        <exclude reference="tBM-1K-ctT"/>
                                         <exclude reference="B4D-3c-sd8"/>
                                         <exclude reference="AaM-Ow-RSs"/>
                                         <exclude reference="oZv-0C-eyi"/>
@@ -283,7 +274,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="3lb-wD-rbh">
             <objects>
-                <viewController storyboardIdentifier="SignUp" id="rMA-Qa-Dfn" customClass="SignUpViewController" customModule="ParseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUp" id="rMA-Qa-Dfn" customClass="SignUpViewController" customModule="TuringChatMachine" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9FF-9b-KJx"/>
                         <viewControllerLayoutGuide type="bottom" id="OBb-fH-P4c"/>
@@ -295,50 +286,43 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-tl-yjV">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ParseDemo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXa-uY-QdX">
-                                        <rect key="frame" x="80" y="20" width="112" height="58"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="17"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UOz-tS-XVp">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UOz-tS-XVp">
                                         <rect key="frame" x="13" y="81" width="245" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Do8-Og-2JR"/>
                                             <constraint firstAttribute="width" constant="245" id="lEb-h3-ahR"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jcj-sR-Vlo">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jcj-sR-Vlo">
                                         <rect key="frame" x="13" y="184" width="245" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="245" id="bNs-hl-xxr"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4IT-7M-gza">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4IT-7M-gza">
                                         <rect key="frame" x="13" y="134" width="245" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="245" id="LXK-e7-s3p"/>
                                             <constraint firstAttribute="height" constant="30" id="U2R-wm-25B"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVT-DP-MPG">
-                                        <rect key="frame" x="85" y="246" width="100" height="45"/>
+                                        <rect key="frame" x="85" y="246" width="100" height="46"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="KRk-cS-xgU"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
-                                        <state key="normal" title="Sign Up">
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="24"/>
+                                        <state key="normal" title="注册">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -346,26 +330,42 @@
                                             <action selector="signUpAction:" destination="rMA-Qa-Dfn" eventType="touchUpInside" id="dFT-Te-03I"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="abl-lF-W23">
+                                        <rect key="frame" x="62" y="8" width="146" height="51"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="51" id="34N-Jj-RzN"/>
+                                            <constraint firstAttribute="width" constant="146" id="F0f-En-mF8"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="146" id="fGB-KF-enT"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="nuL-V4-5j5"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="fGB-KF-enT"/>
+                                                <exclude reference="nuL-V4-5j5"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="4IT-7M-gza" firstAttribute="top" secondItem="UOz-tS-XVp" secondAttribute="bottom" constant="23" id="1ej-Pr-CNa"/>
                                     <constraint firstItem="Jcj-sR-Vlo" firstAttribute="centerX" secondItem="XVT-DP-MPG" secondAttribute="centerX" constant="0.5" id="49v-Pa-xXf"/>
-                                    <constraint firstItem="UOz-tS-XVp" firstAttribute="centerX" secondItem="uXa-uY-QdX" secondAttribute="centerX" constant="-0.5" id="5wk-jM-P8q"/>
                                     <constraint firstItem="UOz-tS-XVp" firstAttribute="centerX" secondItem="4IT-7M-gza" secondAttribute="centerX" id="Jmc-8o-m2c"/>
                                     <constraint firstItem="Jcj-sR-Vlo" firstAttribute="top" secondItem="4IT-7M-gza" secondAttribute="bottom" constant="20" id="KY4-g9-KXg"/>
                                     <constraint firstAttribute="width" constant="270" id="NmS-r0-ksL"/>
-                                    <constraint firstItem="uXa-uY-QdX" firstAttribute="top" secondItem="QiR-tl-yjV" secondAttribute="top" constant="20" id="RY8-ZZ-kZS"/>
-                                    <constraint firstItem="UOz-tS-XVp" firstAttribute="top" secondItem="uXa-uY-QdX" secondAttribute="bottom" constant="3" id="SnQ-86-wGt"/>
-                                    <constraint firstAttribute="centerX" secondItem="uXa-uY-QdX" secondAttribute="centerX" constant="-1" id="WGC-kM-NVl"/>
+                                    <constraint firstItem="UOz-tS-XVp" firstAttribute="top" secondItem="abl-lF-W23" secondAttribute="bottom" constant="22" id="UVQ-tJ-1yw"/>
+                                    <constraint firstItem="UOz-tS-XVp" firstAttribute="leading" secondItem="QiR-tl-yjV" secondAttribute="leading" constant="13" id="ZCi-6X-FCx"/>
                                     <constraint firstAttribute="height" constant="346" id="ZEm-pT-DW9"/>
+                                    <constraint firstItem="abl-lF-W23" firstAttribute="top" secondItem="QiR-tl-yjV" secondAttribute="top" constant="8" id="be8-2N-3pN"/>
                                     <constraint firstItem="Jcj-sR-Vlo" firstAttribute="centerX" secondItem="4IT-7M-gza" secondAttribute="centerX" id="kfg-cF-ETa"/>
                                     <constraint firstItem="XVT-DP-MPG" firstAttribute="top" secondItem="Jcj-sR-Vlo" secondAttribute="bottom" constant="32" id="pEj-Ud-UxX"/>
+                                    <constraint firstItem="abl-lF-W23" firstAttribute="centerX" secondItem="QiR-tl-yjV" secondAttribute="centerX" id="yhw-iu-1e3"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znj-c5-sYl">
-                                <rect key="frame" x="550" y="28" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znj-c5-sYl">
+                                <rect key="frame" x="554" y="28" width="30" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -373,7 +373,7 @@
                                     <constraint firstAttribute="height" constant="30" id="GbL-gZ-psd"/>
                                 </constraints>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="close"/>
+                                <state key="normal" image="close-1"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="15"/>
@@ -419,7 +419,7 @@
         <!--Home View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="Home" id="vXZ-lx-hvc" customClass="HomeViewController" customModule="ParseDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="vXZ-lx-hvc" customClass="HomeViewController" customModule="TuringChatMachine" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -431,14 +431,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mn3-tI-dz0">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6O-Ll-Byu">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6O-Ll-Byu">
                                         <rect key="frame" x="15" y="170" width="241" height="34"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="241" id="A7O-J8-baV"/>
                                             <constraint firstAttribute="height" constant="34" id="pjA-Ir-tp8"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="21"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="21"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -450,15 +450,15 @@
                                             <constraint firstAttribute="height" constant="120" id="5Bt-uj-fzc"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpI-nj-meO">
-                                        <rect key="frame" x="83" y="237" width="105" height="45"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpI-nj-meO">
+                                        <rect key="frame" x="83" y="245" width="105" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4sh-8l-dyd"/>
                                             <constraint firstAttribute="width" constant="105" id="gz6-nF-2f4"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
-                                        <state key="normal" title="Log Out">
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="24"/>
+                                        <state key="normal" title="登出">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -505,7 +505,8 @@
     </scenes>
     <resources>
         <image name="bar" width="300" height="20"/>
-        <image name="close" width="64" height="64"/>
+        <image name="close-1" width="64" height="64"/>
+        <image name="logo" width="146" height="51"/>
         <image name="user" width="126" height="126"/>
     </resources>
 </document>
