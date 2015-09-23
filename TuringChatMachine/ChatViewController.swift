@@ -194,6 +194,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
         title = "灵灵"
+        self.navigationItem.rightBarButtonItem = itemWithImage("exit", highlightImage: "exit_highlight", target: self, action:"exitButtonTapped:")
         
         
         tableView = UITableView(frame: view.bounds, style: .Plain)
@@ -214,6 +215,12 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         
         
         // Do any additional setup after loading the view.
+    }
+    func exitButtonTapped(sender:UIButton){
+        PFUser.logOut()
+        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+        self.presentViewController(viewController, animated: true, completion: nil)
+    
     }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -496,7 +503,18 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     }
     
     
-    
+    func itemWithImage(image:String,highlightImage:String,target:AnyObject,action:Selector)->UIBarButtonItem
+    {
+        let button = UIButton(type: UIButtonType.Custom)
+        button.setBackgroundImage(UIImage(named: image), forState: UIControlState.Normal)
+        button.setBackgroundImage(UIImage(named: highlightImage), forState: UIControlState.Highlighted)
+        
+        button.frame = CGRect(origin: CGPointZero, size: (UIImage(named: image)?.size)!)
+       
+        button.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        
+        return UIBarButtonItem(customView: button)
+    }
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
