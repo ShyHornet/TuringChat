@@ -16,6 +16,7 @@ class LoginViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = true
         password.secureTextEntry = true
         // Do any additional setup after loading the view.
     }
@@ -55,8 +56,9 @@ class LoginViewController: UIViewController {
             }
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home")
-                self.presentViewController(viewController, animated: true, completion: nil)
+//                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Home")
+//                self.presentViewController(viewController, animated: true, completion: nil)
+                self.navigationController?.popViewControllerAnimated(true)
             })
             
             

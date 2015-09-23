@@ -465,7 +465,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpI-nj-meO">
-                                        <rect key="frame" x="83" y="245" width="105" height="30"/>
+                                        <rect key="frame" x="111.5" y="245" width="48" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4sh-8l-dyd"/>
@@ -476,6 +476,11 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="gz6-nF-2f4"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="logOutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zzQ-SF-W4s"/>
                                         </connections>

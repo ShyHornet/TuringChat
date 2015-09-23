@@ -183,10 +183,12 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     
     override func viewDidLoad() {
         self.initData(1)
-
+        
         self.navigationController?.navigationBarHidden = false
+        self.navigationItem.setLeftBarButtonItem(itemWithImage("exit", highlightImage: "exit_highlight", target: self, action:"exitButtonTapped:"), animated: true)
+        self.navigationItem.setRightBarButtonItem(itemWithImage("setting", highlightImage: "setting_highlight", target: self, action:"settingButtonTapped:"), animated: true)
         title = "灵灵"
-        self.navigationItem.rightBarButtonItem = itemWithImage("exit", highlightImage: "exit_highlight", target: self, action:"exitButtonTapped:")
+
         
         
         tableView = UITableView(frame: view.bounds, style: .Plain)
@@ -210,8 +212,13 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     }
     func exitButtonTapped(sender:UIButton){
         PFUser.logOut()
-        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-        self.presentViewController(viewController, animated: true, completion: nil)
+//        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+//        self.presentViewController(viewController, animated: true, completion: nil)
+        self.navigationController?.popViewControllerAnimated(true)
+    
+    }
+    func settingButtonTapped(sender:UIButton){
+    
     
     }
     deinit {
