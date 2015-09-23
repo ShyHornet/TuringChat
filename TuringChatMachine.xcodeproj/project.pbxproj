@@ -45,7 +45,7 @@
 		6EC945D41B968F71001A8943 /* TuringChatMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuringChatMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC945D81B968F71001A8943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EC945D91B968F71001A8943 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6EC945E01B968F71001A8943 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6EC945E01B968F71001A8943 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TuringChatMachine/Images.xcassets; sourceTree = "<group>"; };
 		6EC945E91B968F71001A8943 /* TuringChatMachineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TuringChatMachineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC945EE1B968F71001A8943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EC945EF1B968F71001A8943 /* TuringChatMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuringChatMachineTests.swift; sourceTree = "<group>"; };
@@ -135,6 +135,7 @@
 			children = (
 				6EC945F91B968FD5001A8943 /* Podfile */,
 				6EC945D61B968F71001A8943 /* TuringChatMachine */,
+				6EC945E01B968F71001A8943 /* Images.xcassets */,
 				6EC945EC1B968F71001A8943 /* TuringChatMachineTests */,
 				6EC945D51B968F71001A8943 /* Products */,
 				D431887E2EF3B90B8DC625CF /* Pods */,
@@ -157,7 +158,6 @@
 				87D1C6421BAFB1E0009B8AFA /* TuringChatMachine.entitlements */,
 				6E0923591BA7A9A800C498C1 /* model */,
 				6EE18E031BA26EFB00944C87 /* controllers */,
-				6EC945E01B968F71001A8943 /* Images.xcassets */,
 				6EC945D71B968F71001A8943 /* Supporting Files */,
 			);
 			path = TuringChatMachine;
@@ -488,6 +488,7 @@
 			baseConfigurationReference = 735D6E07674705CBE9DA6651 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TuringChatMachine/TuringChatMachine.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -498,6 +499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeGlider.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -506,6 +508,7 @@
 			baseConfigurationReference = 1A965B8ABB7841234BB572FA /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = TuringChatMachine/TuringChatMachine.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -52,9 +52,9 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     var textView: UITextView!
     var sendButton: UIButton!
     var rotating = false
-    
+    var continuedActivity: NSUserActivity?
     var response:String?
-    var question = ""
+   
     var messages:[[Message]] = [[Message(incoming: true, text: "你好，请叫我灵灵，我是主人的贴身小助手!", sentDate: NSDate())]]
     override var inputAccessoryView: UIView! {
         get {
@@ -108,22 +108,24 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         return true
     }
     //MARK:生命周期管理
-    func initData(){
+    func initData(howMany7DaysBefore:Double){
         
         
         var index = 0
         var section = 0
         var currentDate:NSDate?
-        
+    
         
         let query:PFQuery = PFQuery(className:"Messages")
         if let user = PFUser.currentUser(){
             query.whereKey("createdBy", equalTo: user)
-            messages = [[Message(incoming: true, text: "\(user.username!)你好，请叫我灵灵，我是主人的贴身小助手!", sentDate: NSDate())]]
+            query.limit = 1000
+            query.whereKey("sentDate", greaterThanOrEqualTo:NSDate(timeIntervalSinceNow: -howMany7DaysBefore*7*24*60*60))
+             query.whereKey("sentDate", lessThanOrEqualTo:NSDate(timeIntervalSinceNow: (howMany7DaysBefore - 1.0)*7*24*60*60))
+            
         }
         
         query.orderByAscending("sentDate")
-        query.cachePolicy = PFCachePolicy.CacheElseNetwork
         
         
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
@@ -155,21 +157,11 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
                         
                         if timeInterval < 120{
                             self.messages[section].append(message)
-                            //                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            //
-                            //                                self.tableView.reloadData()
-                            //
-                            //                            })
-                            
+
                         }else{
                             section++
                             self.messages.append([message])
-                            //                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            //
-                            //                                self.tableView.reloadData()
-                            //
-                            //                            })
-                            
+    
                         }
                         currentDate = message.sentDate
                         index++
@@ -190,8 +182,8 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     
     
     override func viewDidLoad() {
-        self.initData()
-        super.viewDidLoad()
+        self.initData(1)
+
         self.navigationController?.navigationBarHidden = false
         title = "灵灵"
         self.navigationItem.rightBarButtonItem = itemWithImage("exit", highlightImage: "exit_highlight", target: self, action:"exitButtonTapped:")
@@ -371,6 +363,8 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         
     }
     func sendAction() {
+        var question = ""
+        var answer = ""
         
         let message = Message(incoming: false, text: textView.text, sentDate: NSDate())
         saveMessage(message)
@@ -405,7 +399,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
                 print("Text is nil!")
                 return
             }
-         
+             answer = text
           if let url = data.value!.objectForKey("url") as? String {
             let message = Message(incoming: true,
                 text:text+"\n(点击该消息打开查看)",
@@ -413,14 +407,14 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
             message.url = url
             self.saveMessage(message)
             self.messages[lastSection].append(message)
+            self.createUserActivity(lastSection, question: question, answer:answer, url: url)
 
           }else{
        
           let message = Message(incoming: true, text:text, sentDate: NSDate())
                 self.saveMessage(message)
                 self.messages[lastSection].append(message)
-            self.saveMessage(message)
-            self.messages[lastSection].append(message)
+            self.createUserActivity(lastSection, question: question, answer:answer, url:"")
 
             }
             self.tableView.beginUpdates()
@@ -433,7 +427,26 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         }
 
     }
-    
+    func createUserActivity(section:Int,question:String,answer:String,url:String){
+        let myActivity = NSUserActivity(activityType: "com.codeGlider.TuringChatMachine.chat")
+        myActivity.title = "图灵聊天机器人" // 2
+        myActivity.eligibleForSearch = true // 4
+        myActivity.keywords = Set(arrayLiteral:question,answer) // 5
+        self.userActivity = myActivity // 6
+        if url != ""{
+        self.userActivity?.userInfo = ["section":section,"url":url]
+        }else{
+        self.userActivity?.userInfo = ["section":section]
+        }
+        myActivity.eligibleForHandoff = false // 7
+        myActivity.becomeCurrent() // 8
+    }
+    override func restoreUserActivityState(activity: NSUserActivity) {
+        continuedActivity = activity
+        var section = userActivity?.userInfo!["section"] as! Int
+        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection:section), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        super.restoreUserActivityState(activity)
+    }
     func tableViewScrollToBottomAnimated(animated: Bool) {
         
         let numberOfSections = messages.count

@@ -81,6 +81,9 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="EmY-8Q-JAl" kind="unwind" unwindAction="unwindToLogInScreen:" id="rOf-TY-niF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -110,6 +113,7 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NG4-oL-4YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="EmY-8Q-JAl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-97" y="-467"/>
         </scene>
@@ -219,6 +223,9 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="KVE-cM-mVc" kind="show" id="7cN-5j-MRa"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <animations/>
@@ -299,7 +306,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="LM7-ct-bF6" kind="unwind" unwindAction="unwindToLogInScreen:" id="34I-sW-kHS"/>
+                                    <segue destination="LM7-ct-bF6" kind="unwind" unwindAction="unwindToLogInScreen:" id="1Uw-BS-Bw1"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-tl-yjV">
