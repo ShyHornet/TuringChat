@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Spring
 func delay(seconds seconds: Double, completion:()->()) {
     let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
     
@@ -16,18 +17,22 @@ func delay(seconds seconds: Double, completion:()->()) {
     }
 }
 class HomeViewController: UIViewController {
-    
+ 
     @IBOutlet weak var logInStatus: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
     override func viewWillAppear(animated: Bool) {
+        
         self.navigationController?.navigationBarHidden = true
         if (PFUser.currentUser() == nil) {
-        
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                delay(seconds: 1.5, completion: { () -> () in
+                    let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                    //self.presentViewController(viewController, animated: true, completion: nil)
+                    
+                })
                 
-                let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-                self.navigationController?.pushViewController(viewController, animated: true)
-                //self.presentViewController(viewController, animated: true, completion: nil)
             })
         }else{
             let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(self.view.frame.width/2 - 25,100, 50, 50)) as UIActivityIndicatorView
@@ -59,7 +64,9 @@ class HomeViewController: UIViewController {
         })
     }
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
