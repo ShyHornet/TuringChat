@@ -78,7 +78,7 @@ class WebViewController: UIViewController{
         nextButton.addTarget(self, action: "goNextPage:", forControlEvents: UIControlEvents.TouchUpInside)
         
        closeButton = UIButton(frame: CGRect(origin: CGPointZero, size: CGSize(width: 22, height: 21.5)))
-        closeButton.setBackgroundImage(UIImage(named: "close_1"), forState: UIControlState.Normal)
+        closeButton.setBackgroundImage(UIImage(named: "close"), forState: UIControlState.Normal)
         view.addSubview(closeButton)
         closeButton.snp_makeConstraints { (make) -> Void in
             make.right.equalTo(view.snp_right).offset(-20.5)

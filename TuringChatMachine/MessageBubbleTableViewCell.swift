@@ -8,6 +8,7 @@ let bubbleTag = 8
 class MessageBubbleTableViewCell:UITableViewCell{
     let bubbleImageView: UIImageView
     let messageLabel: UILabel
+    let sentDateLabel:UILabel
      var url = ""
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 
@@ -19,18 +20,29 @@ class MessageBubbleTableViewCell:UITableViewCell{
         messageLabel.font = UIFont.systemFontOfSize(messageFontSize)
         messageLabel.numberOfLines = 0
         messageLabel.userInteractionEnabled = false   // #CopyMessage
-
+        
+        sentDateLabel = UILabel(frame: CGRectZero)
+        sentDateLabel.font = UIFont.systemFontOfSize(sentDateFontSize)
+        sentDateLabel.numberOfLines = 1
+        sentDateLabel.userInteractionEnabled = false
+        sentDateLabel.textAlignment = .Center
+        sentDateLabel.textColor = UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1)
+        
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         selectionStyle = .None
-
+    
         contentView.addSubview(bubbleImageView)
+        contentView.addSubview(sentDateLabel)
         bubbleImageView.addSubview(messageLabel)
-//         
-//        bubbleImageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-//        messageLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+   
+        sentDateLabel.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(contentView.snp_top)
+            make.centerX.equalTo(contentView.snp_centerX)
+            
+        }
         bubbleImageView.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(contentView.snp_left).offset(10)
-            make.top.equalTo(contentView.snp_top).offset(4.5)
+            make.top.equalTo(sentDateLabel.snp_bottom).offset(4.5)
             make.width.equalTo(messageLabel.snp_width).offset(30)
             make.bottom.equalTo(contentView.snp_bottom).offset(-4.5)
         
@@ -52,6 +64,7 @@ class MessageBubbleTableViewCell:UITableViewCell{
 
     func configureWithMessage(message: Message) {
         messageLabel.text = message.text
+        //sentDateLabel.text = formatDate(message.sentDate)
         if message.url != ""{
         url = message.url
         }

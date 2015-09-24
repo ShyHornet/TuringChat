@@ -8,41 +8,65 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 		<key>Bolts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Parse 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>ParseUI.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>SnapKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
 		</dict>
 		<key>Spring.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>006A2C5C85323F895FFE1BBE76E2FD8E</key>
+		<key>1091688AA925600943826D4E240A451A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>10FC5CE2B571075A620708ACED6A2623</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,17 +81,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>695270123BAC7FA3ECD20A997E00661A</key>
+		<key>77545C60DD00C9F792CEEC9995290A1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B4D8F768E52B17AB9643AB7050B48FF3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BA620906E913D4CDBDD6F56F657BAED0</key>
+		<key>BB49AA45405B3C29158A457C15B32CB8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

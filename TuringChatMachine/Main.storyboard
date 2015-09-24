@@ -147,7 +147,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Ye-BFH" customClass="SpringTextView" customModule="Spring">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Ye-BFH">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sr2-Qf-iN0">
@@ -527,13 +527,28 @@
                                             <action selector="logOutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zzQ-SF-W4s"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="E7f-sY-6jO">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="E7f-sY-6jO" customClass="SpringImageView" customModule="Spring">
                                         <rect key="frame" x="75" y="34" width="120" height="120"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="120" id="2r7-qt-aDb"/>
                                             <constraint firstAttribute="height" constant="120" id="5Bt-uj-fzc"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="zoomIn"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="force">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="damping">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="curve" value="easeOut"/>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                 </subviews>
                                 <animations/>
