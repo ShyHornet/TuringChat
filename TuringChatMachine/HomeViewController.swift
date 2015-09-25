@@ -18,8 +18,10 @@ func delay(seconds seconds: Double, completion:()->()) {
 }
 class HomeViewController: UIViewController {
  
+    @IBOutlet weak var panle: SpringView!
     @IBOutlet weak var logInStatus: UIButton!
     @IBOutlet weak var usernameLabel: UILabel!
+    let transition = FadeInTransitionAnimator()
     override func viewWillAppear(animated: Bool) {
         
         self.navigationController?.navigationBarHidden = true
@@ -28,6 +30,8 @@ class HomeViewController: UIViewController {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 delay(seconds: 1.5, completion: { () -> () in
                     let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+                    //viewController.view.backgroundColor = UIColor.whiteColor()
+                    self.navigationController?.view.backgroundColor = UIColor.whiteColor()
                     self.navigationController?.pushViewController(viewController, animated: true)
                     //self.presentViewController(viewController, animated: true, completion: nil)
                     
@@ -69,7 +73,9 @@ class HomeViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    override func viewDidAppear(animated: Bool) {
+        navigationController?.delegate = self
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -86,4 +92,19 @@ class HomeViewController: UIViewController {
     }
     */
 
+}
+extension HomeViewController:UINavigationControllerDelegate{
+    
+    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if var _ = toVC as? ChatViewController{
+        transition.operation = operation
+        
+            return transition
+        }
+        else{
+        return nil
+        }
+        
+    }
+    
 }

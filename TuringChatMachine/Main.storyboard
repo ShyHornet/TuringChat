@@ -492,8 +492,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mn3-tI-dz0" customClass="SpringView" customModule="Spring">
-                                <rect key="frame" x="160" y="127" width="270" height="346"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mn3-tI-dz0" customClass="SpringView" customModule="Spring">
+                                <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6O-Ll-Byu">
                                         <rect key="frame" x="15" y="170" width="241" height="34"/>
@@ -507,7 +507,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpI-nj-meO">
-                                        <rect key="frame" x="111.5" y="245" width="48" height="30"/>
+                                        <rect key="frame" x="111" y="245" width="48" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4sh-8l-dyd"/>
@@ -592,6 +592,7 @@
                     </view>
                     <connections>
                         <outlet property="logInStatus" destination="dpI-nj-meO" id="0y3-mY-88a"/>
+                        <outlet property="panle" destination="Mn3-tI-dz0" id="NY3-zL-rkT"/>
                         <outlet property="usernameLabel" destination="m6O-Ll-Byu" id="V82-Cd-Tco"/>
                     </connections>
                 </viewController>

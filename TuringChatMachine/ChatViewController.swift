@@ -47,10 +47,10 @@ let toolBarMinHeight: CGFloat = 44
 let textViewMaxHeight: (portrait: CGFloat, landscape: CGFloat) = (portrait: 272, landscape: 90)
 
 
-class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,SFSafariViewControllerDelegate {
+class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewControllerDelegate {
     //MARK:属性定义
-
-    var tableView: UITableView!
+    
+    
     var toolBar: UIToolbar!
     var textView: UITextView!
     var sendButton: UIButton!
@@ -115,23 +115,22 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
         print("initData")
         
         var index = 0
-
+        
         var currentDate:NSDate?
-    
+        
         
         let query:PFQuery = PFQuery(className:"Messages")
         if let user = PFUser.currentUser(){
             query.whereKey("createdBy", equalTo: user)
             query.limit = 1000
             query.whereKey("sentDate", greaterThanOrEqualTo:NSDate(timeIntervalSinceNow: -howMany7DaysBefore*7*24*60*60))
-             query.whereKey("sentDate", lessThanOrEqualTo:NSDate(timeIntervalSinceNow: (howMany7DaysBefore - 1.0)*7*24*60*60))
-//            self.messages = [[Message(incoming: true, text: "你好，请叫我灵灵，我是主人的贴身小助手!", sentDate: NSDate())]]
+            query.whereKey("sentDate", lessThanOrEqualTo:NSDate(timeIntervalSinceNow: (howMany7DaysBefore - 1.0)*7*24*60*60))
+            //            self.messages = [[Message(incoming: true, text: "你好，请叫我灵灵，我是主人的贴身小助手!", sentDate: NSDate())]]
         }
         
         query.orderByAscending("sentDate")
-        query.cachePolicy = PFCachePolicy.CacheThenNetwork
-        
-        
+        //query.cachePolicy = PFCachePolicy.CacheThenNetwork
+
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             
             if error == nil {
@@ -140,18 +139,19 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
                 if objects!.count > 0 {
                     for object in objects as! [PFObject] {
                         
+                    
                         let message = Message(incoming: object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
                         if let url = object["url"] as? String{
                             message.url = url
                             
                         }
-                            self.messages.append(message)
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                
-                                self.tableView.reloadData()
-                                
-                            })
-    
+                        self.messages.append(message)
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            
+                            self.tableView.reloadData()
+                            
+                        })
+                        
                         
                         currentDate = message.sentDate
                         index++
@@ -166,16 +166,16 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
         
         
         
-        
+     
         
     }
     
     
     override func viewDidLoad() {
-        print("viewDidLoad")
-        
-        tableView = UITableView(frame: view.bounds, style: .Plain)
-        view.addSubview(tableView)
+        super.viewDidLoad()
+
+        self.initData(1)
+
         //        tableView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         tableView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
         
@@ -185,18 +185,16 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
         
         self.tableView.separatorStyle = .None
 
+       
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        self.initData(1)
         self.navigationController?.navigationBarHidden = false
         self.navigationItem.setLeftBarButtonItem(itemWithImage("exit", highlightImage: "exit_highlight", target: self, action:"exitButtonTapped:"), animated: true)
         self.navigationItem.setRightBarButtonItem(itemWithImage("setting", highlightImage: "setting_highlight", target: self, action:"settingButtonTapped:"), animated: true)
         title = "灵灵"
-
         
         
-
+        
+        
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
@@ -206,16 +204,16 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
         
         // Do any additional setup after loading the view.
     }
+    
     func exitButtonTapped(sender:UIButton){
         PFUser.logOut()
-//        let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
-//        self.presentViewController(viewController, animated: true, completion: nil)
+
         self.navigationController?.popViewControllerAnimated(true)
-    
+        
     }
     func settingButtonTapped(sender:UIButton){
-    
-    
+        
+        
     }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -225,24 +223,16 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
         // Dispose of any resources that can be recreated.
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        self.view.backgroundColor = UIColor.whiteColor()
+    }
     override func viewDidAppear(animated: Bool)  {
         super.viewDidAppear(animated)
         tableView.flashScrollIndicators()
+        
+        
+    }
 
-        
-    }
-    
-    override func viewWillDisappear(animated: Bool)  {
-        super.viewWillDisappear(animated)
-        
-    }
-    
-    override func viewDidLayoutSubviews()  {
-        super.viewDidLayoutSubviews()
-        
-    }
-    
     //MARK:textView代理方法
     func textViewDidChange(textView: UITextView) {
         updateTextViewHeight()
@@ -250,8 +240,18 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
     }
     //MARK:tableView代理方法
     
-    
-     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete{
+            
+        messages.removeAtIndex(indexPath.row)
+            tableView.reloadData()
+          
+        }
+    }
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         guard let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? MessageBubbleTableViewCell else{
             return nil
         }
@@ -277,39 +277,38 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
     }
     
     
-     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-            let cellIdentifier = NSStringFromClass(MessageBubbleTableViewCell)
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MessageBubbleTableViewCell!
-            if cell == nil {
-                
-                cell = MessageBubbleTableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-                
-            }
+        let cellIdentifier = NSStringFromClass(MessageBubbleTableViewCell)
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MessageBubbleTableViewCell!
+        if cell == nil {
+            
+            cell = MessageBubbleTableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            
+        }
         
-            let message = messages[indexPath.row]
-            cell.configureWithMessage(message)
+        let message = messages[indexPath.row]
+        cell.configureWithMessage(message)
         
-            return cell
+        return cell
         
         
     }
-
     
-     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
         return 1
-
         
     }
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsInSection")
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
         if messages.count > 0{
-        return messages.count
+            return messages.count
         }else{
-        return 0
+            return 0
         }
-        }
+    }
     
     
     //MARK:发送操作及帮助方法
@@ -333,6 +332,10 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
             }
         }
         
+    }
+    func deleteMessage(message:Message){
+
+    
     }
     func sendAction() {
         var question = ""
@@ -367,46 +370,46 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
                 print("Text is nil!")
                 return
             }
-             answer = text
-          if let url = data.value!.objectForKey("url") as? String {
-            let message = Message(incoming: true,
-                text:text+"\n(点击该消息打开查看)",
-                sentDate: NSDate())
-            message.url = url
-            self.saveMessage(message)
-            self.messages.append(message)
-            self.createUserActivity(self.messages.count - 1, question: question, answer:answer, url: url)
-
-          }else{
-       
-          let message = Message(incoming: true, text:text, sentDate: NSDate())
+            answer = text
+            if let url = data.value!.objectForKey("url") as? String {
+                let message = Message(incoming: true,
+                    text:text+"\n(点击该消息打开查看)",
+                    sentDate: NSDate())
+                message.url = url
                 self.saveMessage(message)
                 self.messages.append(message)
-            self.createUserActivity(self.messages.count - 1 , question: question, answer:answer, url:"")
-
+                self.createUserActivity(self.messages.count - 1, question: question, answer:answer, url: url)
+                
+            }else{
+                
+                let message = Message(incoming: true, text:text, sentDate: NSDate())
+                self.saveMessage(message)
+                self.messages.append(message)
+                self.createUserActivity(self.messages.count - 1 , question: question, answer:answer, url:"")
+                
             }
             self.tableView.beginUpdates()
             self.tableView.insertRowsAtIndexPaths([
                 NSIndexPath(forRow:self.tableView.numberOfRowsInSection(0) , inSection:0)
                 ], withRowAnimation:.Left)
             self.tableView.endUpdates()
-             self.tableViewScrollToBottomAnimated(false)
+            self.tableViewScrollToBottomAnimated(false)
             
         }
-
+        
     }
     func createUserActivity(index:Int,question:String,answer:String,url:String){
         let myActivity = NSUserActivity(activityType: "com.codeGlider.TuringChatMachine.chat")//1
         myActivity.title = "Q:\(question)\nA:\(answer)" // 2
         myActivity.eligibleForSearch = true // 4
-    
+        
         myActivity.keywords = Set(arrayLiteral:question,answer) // 5
         self.userActivity = myActivity // 6
         if url != ""{
-        self.userActivity?.userInfo = ["index":index]
+            self.userActivity?.userInfo = ["index":index]
             self.userActivity?.webpageURL = NSURL(string: url)
         }else{
-        self.userActivity?.userInfo = ["index":index]
+            self.userActivity?.userInfo = ["index":index]
         }
         myActivity.eligibleForHandoff = false // 7
         myActivity.becomeCurrent() // 8
@@ -415,10 +418,10 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
     override func restoreUserActivityState(activity: NSUserActivity) {
         continuedActivity = activity
         if let index = continuedActivity!.userInfo!["index"] as? Int {
-        
-               self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow:index, inSection:0), atScrollPosition: .Middle, animated: true)
+            
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow:index, inSection:0), atScrollPosition: .Middle, animated: true)
         }
-
+        
         if let url = continuedActivity?.webpageURL{
             let webVC = SFSafariViewController(URL:url, entersReaderIfAvailable: true)
             webVC.delegate = self
@@ -429,7 +432,7 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
     
     func tableViewScrollToBottomAnimated(animated: Bool) {
         
-
+        
         let numberOfRows = tableView.numberOfRowsInSection(0)
         if numberOfRows > 0 {
             tableView.scrollToRowAtIndexPath(NSIndexPath(forRow:numberOfRows - 1, inSection: 0), atScrollPosition: .Bottom, animated: animated)
@@ -503,7 +506,7 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
         button.setBackgroundImage(UIImage(named: highlightImage), forState: UIControlState.Highlighted)
         
         button.frame = CGRect(origin: CGPointZero, size: (UIImage(named: image)?.size)!)
-       
+        
         button.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
         
         return UIBarButtonItem(customView: button)
@@ -514,7 +517,7 @@ class ChatViewController:UIViewController,UITableViewDataSource,UITableViewDeleg
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         
-       
+        
         
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
