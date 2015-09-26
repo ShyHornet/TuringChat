@@ -1,6 +1,6 @@
 #图灵聊天机器人
 ![Icon-60@3x.png](http://upload-images.jianshu.io/upload_images/727794-5f5d5a899832d67c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-##v1.0.2
+##v1.0.0 beta
 
 ##使用图灵机器人API和Parse实现
 ##运行环境:
