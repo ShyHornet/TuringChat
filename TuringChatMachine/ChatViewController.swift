@@ -41,6 +41,7 @@ import Parse
 import ParseUI
 import Alamofire
 import SnapKit
+import SVProgressHUD
 let messageFontSize: CGFloat = 17
 let sentDateFontSize:CGFloat = 10
 let toolBarMinHeight: CGFloat = 44
@@ -131,6 +132,13 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
             
             if error == nil {
                 self.messageObjects = objects as! [PFObject]
+                
+                if objects?.count == 0{//如果是第一次登陆
+                    let message = Message(incoming: true, text: "\(PFUser.currentUser()!.username!),你好!我是你的私人小助手，请叫我灵灵！", sentDate: NSDate())
+                    self.saveMessage(message)
+               
+                    
+                }
                 self.tableView.reloadData()
                 
             }else{
@@ -197,15 +205,22 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         self.view.backgroundColor = UIColor.whiteColor()
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
+        SVProgressHUD.showWithStatus("加载聊天记录...")
+  
+        
+        
         
     }
     override func viewDidAppear(animated: Bool)  {
         super.viewDidAppear(animated)
         tableView.flashScrollIndicators()
          self.navigationController?.navigationBarHidden = false
+       SVProgressHUD.dismiss()
+        
         
     }
 
@@ -255,7 +270,8 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     
     var currentCellDate:NSDate!
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
+        var showSentDate = false
         let cellIdentifier = NSStringFromClass(MessageBubbleTableViewCell)
         var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MessageBubbleTableViewCell!
         if cell == nil {
@@ -267,20 +283,22 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         let message = Message(incoming:object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
         if indexPath.row == 0{
         currentCellDate = message.sentDate
-            
+        showSentDate = true
         }
         let timeInterval = currentCellDate.timeIntervalSinceDate(message.sentDate)
-        var showSentDate = false
         
-        if abs(timeInterval) > 120{
+        
+        if abs(timeInterval) > 60*3{
         showSentDate = true
         }
         cell.configureWithMessage(message,showSentDate:showSentDate)
         currentCellDate = message.sentDate
+        
         return cell
         
         
     }
+
     
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -299,7 +317,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     
     
     //MARK:发送操作及帮助方法
-    func saveMessage(message:Message){
+    func saveMessage(message:Message)->PFObject{
         let saveObject = PFObject(className: "Messages")
         saveObject["incoming"] = message.incoming
         saveObject["text"] = message.text
@@ -319,6 +337,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
                 
             }
         }
+        return saveObject
         
     }
     func deleteMessage(message:PFObject){

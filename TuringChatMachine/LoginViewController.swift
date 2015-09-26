@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import Spring
+import SVProgressHUD
 class LoginViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var loginPanle: SpringView!
@@ -21,6 +22,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
         loginPanleShowAnimation()
         self.navigationController?.navigationBarHidden = true
+        if PFUser.currentUser() != nil{
+            username.text = PFUser.currentUser()?.username
+            password.text = PFUser.currentUser()?.password
+            delay(seconds: 1.0, completion: { () -> () in
+                 self.navigationController?.popViewControllerAnimated(true)
+            })
+       
+        }
     }
     func loginPanleShowAnimation(){
         loginPanle.animation = "fadeInLeft"
@@ -112,36 +121,36 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         let password = self.password.text
         
         guard username?.getLength() >= 4 else{
-            let alert = UIAlertView(title: "登陆错误", message: "用户名长度必须大于4个字符", delegate: self, cancelButtonTitle: "确定")
-            alert.show()
+            SVProgressHUD.showErrorWithStatus("用户名长度必须大于4个字符")
             return
         }
         guard password?.getLength() >= 8 else{
-            let alert = UIAlertView(title: "登陆错误", message: "密码长度必须大于8个字符", delegate: self, cancelButtonTitle: "确定")
-            alert.show()
+           SVProgressHUD.showErrorWithStatus("密码长度必须大于8个字符")
             return
         }
         
-        let spinner: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(self.view.frame.width/2 - 25,100, 50, 50)) as UIActivityIndicatorView
-        spinner.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        
-        self.view.addSubview(spinner)
-        spinner.startAnimating()
+
+   
         PFUser.logInWithUsernameInBackground(username!, password: password!) { (user,error) -> Void in
-            spinner.stopAnimating()
+            
             guard user != nil else{
-                let alert = UIAlertView(title: "错误 ", message: "\(error)", delegate: self, cancelButtonTitle: "确定")
-                alert.show()
+            print(error?.userInfo)
+               
+                
+              SVProgressHUD.showErrorWithStatus("登陆失败╮(╯﹏╰）╭")
                 
                 return
             }
-            
+            SVProgressHUD.dismiss()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                
                 self.navigationController?.popViewControllerAnimated(true)
             })
             
             
         }
     }
+
 
 }

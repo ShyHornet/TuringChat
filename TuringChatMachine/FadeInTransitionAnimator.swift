@@ -9,7 +9,7 @@
 import UIKit
 
 class FadeInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
-    let animationDuration:Double = 0.7
+    let animationDuration:Double = 0.5
   weak var transitionContext: UIViewControllerContextTransitioning?
 
   var operation:UINavigationControllerOperation = .Push
@@ -32,7 +32,7 @@ class FadeInTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning 
      UIView.animateWithDuration(animationDuration, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
        
         fromViewController!.view.alpha = 0.0
-        fromViewController!.view.transform = CGAffineTransformMakeScale(1.5, 1.5)
+        fromViewController!.view.transform = CGAffineTransformMakeScale(2.0,2.0)
         toViewController!.view.alpha = 1.0
         if let  toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? ChatViewController{
           toViewController.navigationController?.setNavigationBarHidden(false, animated:false)

@@ -23,13 +23,17 @@ func formatDate(date: NSDate) -> String {
     
     let last18hours = (-18*60*60 < date.timeIntervalSinceNow)
     let isToday = calendar.isDateInToday(date)
+    let isYesteday = calendar.isDateInYesterday(date)
     let isLast7Days = (calendar.compareDate(NSDate(timeIntervalSinceNow: -7*24*60*60), toDate: date, toUnitGranularity: NSCalendarUnit.NSDayCalendarUnit) == NSComparisonResult.OrderedAscending)
     
     
     if last18hours || isToday {
         dateFormatter.dateFormat = "a HH:mm"
-    } else if isLast7Days {
-        dateFormatter.dateFormat = "MM月dd日 a HH:mm EEEE"
+    }else if isYesteday{
+        dateFormatter.dateFormat = "昨天 a HH:mm"
+    }
+    else if isLast7Days {
+        dateFormatter.dateFormat = "EEEE a HH:mm"
     } else {
         dateFormatter.dateFormat = "YYYY年MM月dd日 a HH:mm"
         

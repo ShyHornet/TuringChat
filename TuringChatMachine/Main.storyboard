@@ -201,8 +201,13 @@
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="8Fk-7d-siw"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
-                                            <segue destination="rMA-Qa-Dfn" kind="presentation" id="lFz-US-Dfx"/>
+                                            <segue destination="rMA-Qa-Dfn" kind="presentation" identifier="signUpSegue" id="lFz-US-Dfx"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="robot" translatesAutoresizingMaskIntoConstraints="NO" id="ncB-xP-Rxv">
@@ -484,7 +489,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mn3-tI-dz0" customClass="SpringView" customModule="Spring">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6O-Ll-Byu">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无用户" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6O-Ll-Byu">
                                         <rect key="frame" x="15" y="170" width="241" height="34"/>
                                         <animations/>
                                         <constraints>
@@ -495,27 +500,6 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpI-nj-meO">
-                                        <rect key="frame" x="111" y="245" width="48" height="30"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="4sh-8l-dyd"/>
-                                            <constraint firstAttribute="width" constant="105" id="gz6-nF-2f4"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="24"/>
-                                        <state key="normal" title="登出">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="gz6-nF-2f4"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <action selector="logOutAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="zzQ-SF-W4s"/>
-                                        </connections>
-                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="E7f-sY-6jO" customClass="SpringImageView" customModule="Spring">
                                         <rect key="frame" x="75" y="34" width="120" height="120"/>
                                         <animations/>
@@ -539,17 +523,33 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="curve" value="easeOut"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aR9-ri-csE">
+                                        <rect key="frame" x="104" y="253" width="63" height="34"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="241" id="m9T-qf-ejR"/>
+                                            <constraint firstAttribute="height" constant="34" id="utS-fr-F7v"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="21"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="m9T-qf-ejR"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="dpI-nj-meO" firstAttribute="top" secondItem="m6O-Ll-Byu" secondAttribute="bottom" constant="41" id="Gtb-eV-e5X"/>
                                     <constraint firstAttribute="height" constant="346" id="NHr-JC-mpJ"/>
                                     <constraint firstItem="m6O-Ll-Byu" firstAttribute="centerX" secondItem="E7f-sY-6jO" secondAttribute="centerX" constant="0.5" id="TR9-sD-Q8X"/>
-                                    <constraint firstItem="m6O-Ll-Byu" firstAttribute="centerX" secondItem="dpI-nj-meO" secondAttribute="centerX" id="W3v-RA-52R"/>
+                                    <constraint firstItem="aR9-ri-csE" firstAttribute="centerX" secondItem="Mn3-tI-dz0" secondAttribute="centerX" id="Xc3-H0-m2a"/>
                                     <constraint firstAttribute="centerX" secondItem="E7f-sY-6jO" secondAttribute="centerX" id="ZWS-rK-ENc"/>
                                     <constraint firstItem="m6O-Ll-Byu" firstAttribute="top" secondItem="E7f-sY-6jO" secondAttribute="bottom" constant="16" id="jJW-9R-1u0"/>
                                     <constraint firstAttribute="width" constant="270" id="o7O-Oe-t3q"/>
+                                    <constraint firstItem="aR9-ri-csE" firstAttribute="top" secondItem="m6O-Ll-Byu" secondAttribute="bottom" constant="49" id="u5p-hT-qZg"/>
                                     <constraint firstItem="E7f-sY-6jO" firstAttribute="top" secondItem="Mn3-tI-dz0" secondAttribute="top" constant="34" id="zOh-ix-kfM"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -568,7 +568,7 @@
                     </view>
                     <connections>
                         <outlet property="AvatarImage" destination="E7f-sY-6jO" id="acz-Rc-2dv"/>
-                        <outlet property="logInStatus" destination="dpI-nj-meO" id="0y3-mY-88a"/>
+                        <outlet property="logInStatus" destination="aR9-ri-csE" id="X7l-op-nYp"/>
                         <outlet property="panle" destination="Mn3-tI-dz0" id="NY3-zL-rkT"/>
                         <outlet property="usernameLabel" destination="m6O-Ll-Byu" id="V82-Cd-Tco"/>
                     </connections>

@@ -7,6 +7,7 @@ PODS:
     - Parse (~> 1.7)
   - SnapKit (0.14.0)
   - Spring (1.0.3)
+  - SVProgressHUD (HEAD based on 1.1.3)
 
 DEPENDENCIES:
   - Alamofire (~> 2.0)
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - ParseUI (~> 1.1.3)
   - SnapKit (~> 0.14.0)
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift2`)
+  - SVProgressHUD (HEAD)
 
 EXTERNAL SOURCES:
   Spring:
@@ -32,5 +34,6 @@ SPEC CHECKSUMS:
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
   SnapKit: f42352ef34953866da0de1e1009c2ff82588a95e
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
+  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
 
 COCOAPODS: 0.38.2

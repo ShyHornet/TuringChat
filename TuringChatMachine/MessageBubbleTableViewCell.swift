@@ -36,14 +36,14 @@ class MessageBubbleTableViewCell:UITableViewCell{
         bubbleImageView.addSubview(messageLabel)
    
         sentDateLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top).offset(2)
+            make.top.equalTo(contentView.snp_top).offset(5)
             
             make.centerX.equalTo(contentView.snp_centerX)
             
         }
         bubbleImageView.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(contentView.snp_left).offset(10)
-            make.top.equalTo(sentDateLabel.snp_bottom).offset(4.5)
+            make.top.equalTo(sentDateLabel.snp_bottom).offset(10)
             make.width.equalTo(messageLabel.snp_width).offset(30)
             make.bottom.equalTo(contentView.snp_bottom).offset(-4.5)
         
