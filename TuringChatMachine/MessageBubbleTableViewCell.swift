@@ -36,7 +36,8 @@ class MessageBubbleTableViewCell:UITableViewCell{
         bubbleImageView.addSubview(messageLabel)
    
         sentDateLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top)
+            make.top.equalTo(contentView.snp_top).offset(2)
+            
             make.centerX.equalTo(contentView.snp_centerX)
             
         }
@@ -62,9 +63,12 @@ class MessageBubbleTableViewCell:UITableViewCell{
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configureWithMessage(message: Message) {
+    func configureWithMessage(message: Message,showSentDate:Bool) {
         messageLabel.text = message.text
-        //sentDateLabel.text = formatDate(message.sentDate)
+        if showSentDate {
+            sentDateLabel.text = formatDate(message.sentDate)
+        }
+        
         if message.url != ""{
         url = message.url
         }

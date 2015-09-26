@@ -17,6 +17,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBAction func unwindToLogInScreen(segue:UIStoryboardSegue) {
     }
     override func viewWillAppear(animated: Bool) {
+ 
+    
         loginPanleShowAnimation()
         self.navigationController?.navigationBarHidden = true
     }
@@ -29,6 +31,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         loginPanle.velocity = 0.0
         loginPanle.force = 1.0
         loginPanle.animate()
+        
+         
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == username{ //如果用户名输入框回车就跳到密码输入框
@@ -51,6 +55,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         password.delegate = self
         username.delegate = self
+        
+       
         self.navigationController?.navigationBarHidden = true
         password.secureTextEntry = true
         password.returnKeyType = UIReturnKeyType.Done

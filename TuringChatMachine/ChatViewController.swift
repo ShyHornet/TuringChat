@@ -253,7 +253,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
+    var currentCellDate:NSDate!
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIdentifier = NSStringFromClass(MessageBubbleTableViewCell)
@@ -265,9 +265,18 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         }
         let object =  messageObjects[indexPath.row]
         let message = Message(incoming:object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
+        if indexPath.row == 0{
+        currentCellDate = message.sentDate
+            
+        }
+        let timeInterval = currentCellDate.timeIntervalSinceDate(message.sentDate)
+        var showSentDate = false
         
-        cell.configureWithMessage(message)
-        
+        if abs(timeInterval) > 120{
+        showSentDate = true
+        }
+        cell.configureWithMessage(message,showSentDate:showSentDate)
+        currentCellDate = message.sentDate
         return cell
         
         

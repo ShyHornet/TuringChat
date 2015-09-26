@@ -16,6 +16,8 @@ class ResetPasswordViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        panle.clipsToBounds = true
+  
         // Do any additional setup after loading the view.
        
     }
