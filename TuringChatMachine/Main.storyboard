@@ -129,6 +129,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="panle" destination="hF5-3L-Fvb" id="Nfs-yN-qtj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NG4-oL-4YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="EmY-8Q-JAl" userLabel="Exit" sceneMemberID="exit"/>
@@ -147,7 +150,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Ye-BFH">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Ye-BFH" customClass="SpringView" customModule="Spring">
                                 <rect key="frame" x="165" y="127" width="270" height="346"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sr2-Qf-iN0">
@@ -274,19 +277,6 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInUp"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="force">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="damping">
-                                        <real key="value" value="0.40000000000000002"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="curve" value="easeOut"/>
                                 </userDefinedRuntimeAttributes>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -306,6 +296,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginPanle" destination="8ed-Ye-BFH" id="uo9-af-wcu"/>
                         <outlet property="password" destination="sr2-Qf-iN0" id="BlB-NG-8Wz"/>
                         <outlet property="username" destination="eIn-wW-qg4" id="acZ-cM-gf6"/>
                     </connections>
@@ -429,22 +420,6 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInUp"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="force">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="damping">
-                                        <real key="value" value="0.40000000000000002"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="velocity">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="curve" value="easeOut"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -471,6 +446,7 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="UOz-tS-XVp" id="rvL-Nw-Z9G"/>
+                        <outlet property="panle" destination="QiR-tl-yjV" id="Cmj-3w-9Me"/>
                         <outlet property="passwordField" destination="Jcj-sR-Vlo" id="3Kh-PY-ZUg"/>
                         <outlet property="usernameField" destination="4IT-7M-gza" id="KSk-d8-crq"/>
                     </connections>
@@ -567,19 +543,6 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="fadeInUp"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="curve" value="easeOut"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="force">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="damping">
-                                        <real key="value" value="0.40000000000000002"/>
-                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -591,6 +554,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="AvatarImage" destination="E7f-sY-6jO" id="acz-Rc-2dv"/>
                         <outlet property="logInStatus" destination="dpI-nj-meO" id="0y3-mY-88a"/>
                         <outlet property="panle" destination="Mn3-tI-dz0" id="NY3-zL-rkT"/>
                         <outlet property="usernameLabel" destination="m6O-Ll-Byu" id="V82-Cd-Tco"/>

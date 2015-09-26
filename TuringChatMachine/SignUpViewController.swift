@@ -8,11 +8,16 @@
 
 import UIKit
 import Parse
+import Spring
 class SignUpViewController: UIViewController {
     
+    @IBOutlet weak var panle: SpringView!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    override func viewWillAppear(animated: Bool) {
+        signUpPanleShowAnimation()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -22,7 +27,16 @@ class SignUpViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func signUpPanleShowAnimation(){
+        panle.animation = "fadeInUp"
+        panle.autostart = false
+        panle.curve = "easeOut"
+        panle.duration = 1.0
+        panle.damping = 0.6
+        panle.velocity = 0.0
+        panle.force = 1.0
+        panle.animate()
+    }
     @IBAction func signUpAction(sender: AnyObject) {
         let username = self.usernameField.text!
         let password = self.passwordField.text!

@@ -57,7 +57,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     var rotating = false
     var continuedActivity: NSUserActivity?
     var response:String?
-    var messages:[Message] = []
+    var messageObjects:[PFObject] = []
     //[[Message(incoming: true, text: "你好，请叫我灵灵，我是主人的贴身小助手!", sentDate: NSDate())]]
     override var inputAccessoryView: UIView! {
         get {
@@ -112,13 +112,9 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     }
     //MARK:生命周期管理
     func initData(howMany7DaysBefore:Double){
-        print("initData")
-        
+
         var index = 0
-        
-        var currentDate:NSDate?
-        
-        
+ 
         let query:PFQuery = PFQuery(className:"Messages")
         if let user = PFUser.currentUser(){
             query.whereKey("createdBy", equalTo: user)
@@ -134,30 +130,8 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             
             if error == nil {
-                
-                
-                if objects!.count > 0 {
-                    for object in objects as! [PFObject] {
-                        
-                    
-                        let message = Message(incoming: object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
-                        if let url = object["url"] as? String{
-                            message.url = url
-                            
-                        }
-                        self.messages.append(message)
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            
-                            self.tableView.reloadData()
-                            
-                        })
-                        
-                        
-                        currentDate = message.sentDate
-                        index++
-                        
-                    }
-                }
+                self.messageObjects = objects as! [PFObject]
+                self.tableView.reloadData()
                 
             }else{
                 print("Error \(error?.userInfo)")
@@ -172,6 +146,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         self.initData(1)
@@ -187,7 +162,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
 
        
         
-        self.navigationController?.navigationBarHidden = false
+       
         self.navigationItem.setLeftBarButtonItem(itemWithImage("exit", highlightImage: "exit_highlight", target: self, action:"exitButtonTapped:"), animated: true)
         self.navigationItem.setRightBarButtonItem(itemWithImage("setting", highlightImage: "setting_highlight", target: self, action:"settingButtonTapped:"), animated: true)
         title = "灵灵"
@@ -225,11 +200,12 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     
     override func viewWillAppear(animated: Bool) {
         self.view.backgroundColor = UIColor.whiteColor()
+        
     }
     override func viewDidAppear(animated: Bool)  {
         super.viewDidAppear(animated)
         tableView.flashScrollIndicators()
-        
+         self.navigationController?.navigationBarHidden = false
         
     }
 
@@ -245,8 +221,9 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     }
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete{
+            deleteMessage(messageObjects[indexPath.row])
+        messageObjects.removeAtIndex(indexPath.row)
             
-        messages.removeAtIndex(indexPath.row)
             tableView.reloadData()
           
         }
@@ -286,8 +263,9 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
             cell = MessageBubbleTableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
             
         }
+        let object =  messageObjects[indexPath.row]
+        let message = Message(incoming:object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
         
-        let message = messages[indexPath.row]
         cell.configureWithMessage(message)
         
         return cell
@@ -303,8 +281,8 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-        if messages.count > 0{
-            return messages.count
+        if messageObjects.count > 0{
+            return messageObjects.count
         }else{
             return 0
         }
@@ -321,6 +299,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         
         let user = PFUser.currentUser()
         saveObject["createdBy"] = user
+        messageObjects.append(saveObject)
         saveObject.saveEventually { (success, error) -> Void in
             
             if success{
@@ -333,17 +312,25 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         }
         
     }
-    func deleteMessage(message:Message){
-
+    func deleteMessage(message:PFObject){
+message.deleteInBackgroundWithBlock { (success, error) -> Void in
+        guard  error == nil else{
+            print("保存失败! \(error?.userInfo)")
+            return
+    
+            }
+            print("保存成功!")
+        }
     
     }
+
     func sendAction() {
         var question = ""
         var answer = ""
         
         let message = Message(incoming: false, text: textView.text, sentDate: NSDate())
         saveMessage(message)
-        messages.append(message)
+
         
         question = textView.text
         
@@ -377,15 +364,15 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
                     sentDate: NSDate())
                 message.url = url
                 self.saveMessage(message)
-                self.messages.append(message)
-                self.createUserActivity(self.messages.count - 1, question: question, answer:answer, url: url)
+
+                self.createUserActivity(self.messageObjects.count - 1, question: question, answer:answer, url: url)
                 
             }else{
                 
                 let message = Message(incoming: true, text:text, sentDate: NSDate())
                 self.saveMessage(message)
-                self.messages.append(message)
-                self.createUserActivity(self.messages.count - 1 , question: question, answer:answer, url:"")
+
+                self.createUserActivity(self.messageObjects.count - 1 , question: question, answer:answer, url:"")
                 
             }
             self.tableView.beginUpdates()
