@@ -11,17 +11,50 @@ import Spring
 class ResetPasswordViewController: UIViewController {
 
     @IBOutlet weak var panle: SpringView!
+    
+    @IBOutlet weak var emailTextField: UITextField!
     override func viewWillAppear(animated: Bool) {
          resetPasswordPanleShowAnimation()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         panle.clipsToBounds = true
-  
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        
         // Do any additional setup after loading the view.
        
     }
-
+    func keyboardWillShow(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo as NSDictionary!
+        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        if duration > 0{
+            let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16))
+            UIView.animateWithDuration(duration, delay: 0.0, options: options, animations: { () -> Void in
+                self.panle.transform = CGAffineTransformMakeTranslation(0,-frameNew.height/3)
+                
+                }, completion: nil)
+        }
+        
+    }
+    func keyboardWillHide(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo as NSDictionary!
+        
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        if duration > 0{
+            let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16))
+            UIView.animateWithDuration(duration, delay: 0.0, options: options, animations: { () -> Void in
+                self.panle.transform = CGAffineTransformIdentity
+                
+                }, completion: nil)
+        }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

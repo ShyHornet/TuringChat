@@ -9,6 +9,7 @@ class MessageBubbleTableViewCell:UITableViewCell{
     let bubbleImageView: UIImageView
     let messageLabel: UILabel
     let sentDateLabel:UILabel
+    let sentDateLabelBackGroundView:UIView
      var url = ""
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 
@@ -28,22 +29,27 @@ class MessageBubbleTableViewCell:UITableViewCell{
         sentDateLabel.textAlignment = .Center
         sentDateLabel.textColor = UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1)
         
+        sentDateLabelBackGroundView = UIView(frame: CGRectZero)
+        sentDateLabelBackGroundView.backgroundColor = UIColor.grayColor()
+        sentDateLabelBackGroundView.alpha = 0.6
+        sentDateLabelBackGroundView.layer.cornerRadius = 2
+        
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         selectionStyle = .None
     
         contentView.addSubview(bubbleImageView)
         contentView.addSubview(sentDateLabel)
+      
         bubbleImageView.addSubview(messageLabel)
-   
+
         sentDateLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(contentView.snp_top).offset(5)
-            
+            make.top.equalTo(contentView.snp_top).offset(6)
             make.centerX.equalTo(contentView.snp_centerX)
-            
+
         }
         bubbleImageView.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(contentView.snp_left).offset(10)
-            make.top.equalTo(sentDateLabel.snp_bottom).offset(10)
+            make.top.equalTo(sentDateLabel.snp_bottom).offset(6)
             make.width.equalTo(messageLabel.snp_width).offset(30)
             make.bottom.equalTo(contentView.snp_bottom).offset(-4.5)
         
@@ -65,8 +71,10 @@ class MessageBubbleTableViewCell:UITableViewCell{
 
     func configureWithMessage(message: Message,showSentDate:Bool) {
         messageLabel.text = message.text
+    
         if showSentDate {
             sentDateLabel.text = formatDate(message.sentDate)
+           
         }
         
         if message.url != ""{

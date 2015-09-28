@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF5-3L-Fvb" customClass="SpringView" customModule="Spring">
-                                <rect key="frame" x="165" y="127" width="270" height="346"/>
+                                <rect key="frame" x="165" y="127" width="270" height="330"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kkg-AR-t1r">
                                         <rect key="frame" x="13" y="158" width="245" height="30"/>
@@ -58,7 +58,7 @@
                                     <constraint firstItem="EGN-dH-fMV" firstAttribute="centerX" secondItem="kkg-AR-t1r" secondAttribute="centerX" constant="-0.5" id="7ZP-Gl-k48"/>
                                     <constraint firstItem="kkg-AR-t1r" firstAttribute="top" secondItem="4W9-3V-vaa" secondAttribute="bottom" constant="64" id="DLL-6F-agl"/>
                                     <constraint firstItem="4W9-3V-vaa" firstAttribute="centerX" secondItem="hF5-3L-Fvb" secondAttribute="centerX" id="Q9t-vn-yIM"/>
-                                    <constraint firstAttribute="height" constant="346" id="T1c-WS-ena"/>
+                                    <constraint firstAttribute="height" constant="330" id="T1c-WS-ena"/>
                                     <constraint firstItem="4W9-3V-vaa" firstAttribute="top" secondItem="hF5-3L-Fvb" secondAttribute="top" constant="19" id="YIB-0a-Odu"/>
                                     <constraint firstItem="EGN-dH-fMV" firstAttribute="centerX" secondItem="hF5-3L-Fvb" secondAttribute="centerX" id="djW-j5-C5c"/>
                                     <constraint firstItem="EGN-dH-fMV" firstAttribute="top" secondItem="kkg-AR-t1r" secondAttribute="bottom" constant="57" id="dlg-Pc-Vbc"/>
@@ -114,7 +114,7 @@
                             <constraint firstItem="RfN-LF-5Ps" firstAttribute="top" secondItem="hhv-Og-HU4" secondAttribute="bottom" constant="542" id="a5q-9Z-x3Z"/>
                             <constraint firstAttribute="trailing" secondItem="hhv-Og-HU4" secondAttribute="trailing" constant="16" id="ccp-0O-a0i"/>
                             <constraint firstAttribute="trailing" secondItem="hhv-Og-HU4" secondAttribute="trailing" constant="16" id="fHD-vf-vD9"/>
-                            <constraint firstAttribute="centerY" secondItem="hF5-3L-Fvb" secondAttribute="centerY" id="laC-ch-dKf"/>
+                            <constraint firstAttribute="centerY" secondItem="hF5-3L-Fvb" secondAttribute="centerY" constant="8" id="laC-ch-dKf"/>
                             <constraint firstItem="hhv-Og-HU4" firstAttribute="top" secondItem="xa8-Rp-NUF" secondAttribute="bottom" constant="8" id="wSb-d6-rSy"/>
                         </constraints>
                         <variation key="default">
@@ -129,6 +129,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="kkg-AR-t1r" id="z8e-Ob-XZp"/>
                         <outlet property="panle" destination="hF5-3L-Fvb" id="Nfs-yN-qtj"/>
                     </connections>
                 </viewController>
@@ -349,7 +350,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-tl-yjV" customClass="SpringView" customModule="Spring">
-                                <rect key="frame" x="165" y="127" width="270" height="346"/>
+                                <rect key="frame" x="165" y="127" width="270" height="327"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jcj-sR-Vlo">
                                         <rect key="frame" x="13" y="199" width="245" height="30"/>
@@ -422,7 +423,7 @@
                                     <constraint firstAttribute="width" constant="270" id="NmS-r0-ksL"/>
                                     <constraint firstItem="UOz-tS-XVp" firstAttribute="top" secondItem="abl-lF-W23" secondAttribute="bottom" constant="-7" id="UVQ-tJ-1yw"/>
                                     <constraint firstItem="UOz-tS-XVp" firstAttribute="leading" secondItem="QiR-tl-yjV" secondAttribute="leading" constant="13" id="ZCi-6X-FCx"/>
-                                    <constraint firstAttribute="height" constant="346" id="ZEm-pT-DW9"/>
+                                    <constraint firstAttribute="height" constant="327" id="ZEm-pT-DW9"/>
                                     <constraint firstItem="abl-lF-W23" firstAttribute="top" secondItem="QiR-tl-yjV" secondAttribute="top" constant="8" id="be8-2N-3pN"/>
                                     <constraint firstItem="Jcj-sR-Vlo" firstAttribute="centerX" secondItem="4IT-7M-gza" secondAttribute="centerX" id="kfg-cF-ETa"/>
                                     <constraint firstItem="XVT-DP-MPG" firstAttribute="top" secondItem="Jcj-sR-Vlo" secondAttribute="bottom" constant="32" id="pEj-Ud-UxX"/>
@@ -449,7 +450,7 @@
                             <constraint firstAttribute="trailing" secondItem="znj-c5-sYl" secondAttribute="trailing" constant="16" id="8Cy-Ls-wz1"/>
                             <constraint firstItem="znj-c5-sYl" firstAttribute="top" secondItem="9FF-9b-KJx" secondAttribute="bottom" constant="8" id="QNp-8c-D2r"/>
                             <constraint firstItem="znj-c5-sYl" firstAttribute="top" secondItem="9FF-9b-KJx" secondAttribute="bottom" constant="8" id="hC8-g3-XHB"/>
-                            <constraint firstAttribute="centerY" secondItem="QiR-tl-yjV" secondAttribute="centerY" id="lWP-1y-cCx"/>
+                            <constraint firstAttribute="centerY" secondItem="QiR-tl-yjV" secondAttribute="centerY" constant="9.5" id="lWP-1y-cCx"/>
                             <constraint firstItem="OBb-fH-P4c" firstAttribute="top" secondItem="znj-c5-sYl" secondAttribute="bottom" constant="542" id="nF6-by-Esn"/>
                             <constraint firstAttribute="trailing" secondItem="znj-c5-sYl" secondAttribute="trailing" constant="16" id="wRV-Uc-O7D"/>
                         </constraints>

@@ -44,20 +44,17 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
          
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == username{ //如果用户名输入框回车就跳到密码输入框
+        if textField == username{ //如果用户名输入框点击换行就跳到密码输入框
             textField.resignFirstResponder()
             password.becomeFirstResponder()
-        }//如果是密码输入框回车就隐藏键盘
+        }else if textField == password && username.hasText() && password.hasText(){//如果是密码输入框回车同时用户名完成输入，就进行登陆操作
+            
         textField.resignFirstResponder()
-  
+        login()
+        }
         return true
     }
-    func textFieldDidEndEditing(textField: UITextField) {
-        if textField == password && username.hasText()//如果密码输入框完成编辑，同时用户名完成输入就执行登陆操作
-        {
-         login()
-        }
-    }
+
 
 
     override func viewDidLoad() {
@@ -88,7 +85,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         if duration > 0{
          let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16))
             UIView.animateWithDuration(duration, delay: 0.0, options: options, animations: { () -> Void in
-                     self.loginPanle.transform = CGAffineTransformMakeTranslation(0,-frameNew.height/2)
+                     self.loginPanle.transform = CGAffineTransformMakeTranslation(0,-frameNew.height/3)
                 
                 }, completion: nil)
         }

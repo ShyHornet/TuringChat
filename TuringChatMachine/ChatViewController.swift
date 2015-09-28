@@ -42,6 +42,7 @@ import ParseUI
 import Alamofire
 import SnapKit
 import SVProgressHUD
+import Spring
 let messageFontSize: CGFloat = 17
 let sentDateFontSize:CGFloat = 10
 let toolBarMinHeight: CGFloat = 44
@@ -57,7 +58,9 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     var sendButton: UIButton!
     var rotating = false
     var continuedActivity: NSUserActivity?
-    var response:String?
+    var isFirstEnter = true
+    var howMany7DaysBefore:Double = 1
+
     var messageObjects:[PFObject] = []
     //[[Message(incoming: true, text: "你好，请叫我灵灵，我是主人的贴身小助手!", sentDate: NSDate())]]
     override var inputAccessoryView: UIView! {
@@ -131,9 +134,13 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             
             if error == nil {
+                if howMany7DaysBefore == 0{
                 self.messageObjects = objects as! [PFObject]
-                
-                if objects?.count == 0{//如果是第一次登陆
+                }else{
+                self.messageObjects.insertContentsOf(objects as! [PFObject], at: 0)
+                    
+                }
+                if objects?.count == 0 && howMany7DaysBefore == 0{//如果是第一次登陆
                     let message = Message(incoming: true, text: "\(PFUser.currentUser()!.username!),你好!我是你的私人小助手，请叫我灵灵！", sentDate: NSDate())
                     self.saveMessage(message)
                
@@ -157,18 +164,20 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         
         super.viewDidLoad()
 
-        self.initData(1)
+        self.initData(howMany7DaysBefore)
 
         //        tableView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         tableView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
         
         self.tableView.keyboardDismissMode = .Interactive
         self.tableView.estimatedRowHeight = 44
-        self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom:toolBarMinHeight, right: 0)
+        self.tableView.contentInset = UIEdgeInsets(top:0, left: 0, bottom:toolBarMinHeight, right: 0)
         
         self.tableView.separatorStyle = .None
-
-       
+       let refreshHeader = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:"refreshTriggered:")
+        refreshHeader.ignoredScrollViewContentInsetTop = 18
+  refreshHeader.lastUpdatedTimeLabel?.hidden = true
+       tableView.header = refreshHeader
         
        
         self.navigationItem.setLeftBarButtonItem(itemWithImage("exit", highlightImage: "exit_highlight", target: self, action:"exitButtonTapped:"), animated: true)
@@ -182,7 +191,8 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
-        
+        //self.myrefreshControl  =  CBStoreHouseRefreshControl()
+ 
         
         
         // Do any additional setup after loading the view.
@@ -208,9 +218,11 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
 
     override func viewWillAppear(animated: Bool) {
         self.view.backgroundColor = UIColor.whiteColor()
+        if isFirstEnter {
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
         SVProgressHUD.showWithStatus("加载聊天记录...")
-  
+        }
+        
         
         
         
@@ -219,8 +231,10 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         super.viewDidAppear(animated)
         tableView.flashScrollIndicators()
          self.navigationController?.navigationBarHidden = false
+        if isFirstEnter{
        SVProgressHUD.dismiss()
-        
+        }
+        isFirstEnter = !isFirstEnter
         
     }
 
@@ -243,23 +257,26 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
           
         }
     }
+
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        print("Selected At row \(indexPath.row)")
         guard let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? MessageBubbleTableViewCell else{
+            
+            return nil
+        }
+        print("\(selectedCell.url)")
+        let url = selectedCell.url
+        
+        guard url != "" else{
             return nil
         }
         
-        guard selectedCell.url != "" else{
-            return nil
-        }
-        if #available(iOS 9.0, *) {
-            let webVC = SFSafariViewController(URL: NSURL(string:selectedCell.url)!, entersReaderIfAvailable: true)
-            webVC.delegate = self
-            self.presentViewController(webVC, animated: true, completion: nil)
-        } else {
-            let webVC = WebViewController(url: selectedCell.url)
-            self.presentViewController(webVC, animated: true, completion: nil)
-            
-        }
+        print(selectedCell.url)
+        let webVC = SFSafariViewController(URL: NSURL(string: url)!, entersReaderIfAvailable: true)
+        webVC.delegate = self
+        self.presentViewController(webVC, animated: true, completion: nil)
+        
+        
         
         return nil
     }
@@ -281,6 +298,9 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         }
         let object =  messageObjects[indexPath.row]
         let message = Message(incoming:object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
+        if let url = object["url"] as? String{
+            message.url = url
+        }
         if indexPath.row == 0{
         currentCellDate = message.sentDate
         showSentDate = true
@@ -317,7 +337,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     
     
     //MARK:发送操作及帮助方法
-    func saveMessage(message:Message)->PFObject{
+    func saveMessage(message:Message){
         let saveObject = PFObject(className: "Messages")
         saveObject["incoming"] = message.incoming
         saveObject["text"] = message.text
@@ -337,7 +357,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
                 
             }
         }
-        return saveObject
+
         
     }
     func deleteMessage(message:PFObject){
@@ -516,6 +536,7 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
     
     func itemWithImage(image:String,highlightImage:String,target:AnyObject,action:Selector)->UIBarButtonItem
     {
+        
         let button = UIButton(type: UIButtonType.Custom)
         button.setBackgroundImage(UIImage(named: image), forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: highlightImage), forState: UIControlState.Highlighted)
@@ -525,6 +546,14 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
         button.addTarget(target, action: action, forControlEvents: UIControlEvents.TouchUpInside)
         
         return UIBarButtonItem(customView: button)
+    }
+
+    func refreshTriggered(sender:AnyObject){
+    
+        self.initData(++howMany7DaysBefore)
+
+        self.tableView.header.endRefreshing()
+    
     }
     // MARK: - Navigation
     

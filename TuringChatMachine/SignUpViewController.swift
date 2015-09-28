@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import Spring
 import SVProgressHUD
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var panle: SpringView!
     @IBOutlet weak var emailField: UITextField!
@@ -21,9 +21,61 @@ class SignUpViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailField.delegate = self
+        usernameField.delegate = self
+        passwordField.delegate = self
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
     }
-    
+    func keyboardWillShow(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo as NSDictionary!
+        let frameNew = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        if duration > 0{
+            let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16))
+            UIView.animateWithDuration(duration, delay: 0.0, options: options, animations: { () -> Void in
+                self.panle.transform = CGAffineTransformMakeTranslation(0,-frameNew.height/3)
+                
+                }, completion: nil)
+        }
+        
+    }
+    func keyboardWillHide(notification: NSNotification) {
+        
+        let userInfo = notification.userInfo as NSDictionary!
+        
+        let duration = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+        if duration > 0{
+            let options = UIViewAnimationOptions(rawValue: UInt((userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16))
+            UIView.animateWithDuration(duration, delay: 0.0, options: options, animations: { () -> Void in
+                self.panle.transform = CGAffineTransformIdentity
+                
+                }, completion: nil)
+        }
+        
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == emailField{ //如果用户名输入框点击换行就跳到密码输入框
+            print("email!")
+            textField.resignFirstResponder()
+            usernameField.becomeFirstResponder()
+        }else if textField == usernameField{//如果是密码输入框回车同时用户名完成输入，就进行登陆操作
+            print("username!")
+            textField.resignFirstResponder()
+            passwordField.becomeFirstResponder()
+            
+        }else if textField == passwordField && emailField.hasText() && usernameField.hasText() && passwordField.hasText(){
+            print("password")
+            textField.resignFirstResponder()
+            signUpAction(self)
+            
+        }
+     return true
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

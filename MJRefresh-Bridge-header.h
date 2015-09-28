@@ -8,6 +8,6 @@
 
 #ifndef MJRefresh_Bridge_header_h
 #define MJRefresh_Bridge_header_h
-
+#import "MJRefresh.h"
 
 #endif /* MJRefresh_Bridge_header_h */
