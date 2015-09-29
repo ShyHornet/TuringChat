@@ -23,6 +23,8 @@
 		8721184E1BB102E80088B2B4 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872118491BB102E80088B2B4 /* ResetPasswordViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8721184F1BB102E80088B2B4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721184A1BB102E80088B2B4 /* SignUpViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		872118511BB13EBB0088B2B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		87340D341BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87340D331BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift */; settings = {ASSET_TAGS = (); }; };
+		87B2FD0C1BBA7A180078679E /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B2FD0B1BBA7A180078679E /* LaunchViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		87D1C6441BAFB6BF009B8AFA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D1C6431BAFB6BF009B8AFA /* CloudKit.framework */; };
 		87DFA6741BB446BE00DF4346 /* FadeInTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFA6731BB446BE00DF4346 /* FadeInTransitionAnimator.swift */; settings = {ASSET_TAGS = (); }; };
 		87F0509C1BB8DCD0003976B6 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F050721BB8DCD0003976B6 /* MJRefreshAutoFooter.m */; settings = {ASSET_TAGS = (); }; };
@@ -79,7 +81,9 @@
 		872118491BB102E80088B2B4 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		8721184A1BB102E80088B2B4 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		87340D331BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabelViewLoadAnimation.swift; sourceTree = "<group>"; };
 		87925A521BB3A1A500847703 /* MJRefresh-Bridge-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-Bridge-header.h"; sourceTree = "<group>"; };
+		87B2FD0B1BBA7A180078679E /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		87D1C6421BAFB1E0009B8AFA /* TuringChatMachine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TuringChatMachine.entitlements; sourceTree = "<group>"; };
 		87D1C6431BAFB6BF009B8AFA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		87DFA6731BB446BE00DF4346 /* FadeInTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeInTransitionAnimator.swift; sourceTree = "<group>"; };
@@ -249,16 +253,26 @@
 		6EE18E031BA26EFB00944C87 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				87B2FD0A1BBA79E80078679E /* LaunchScreen */,
 				6E0923581BA7A98A00C498C1 /* chatPage */,
 				6E0923571BA7A96D00C498C1 /* welcomePage */,
-				872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */,
 			);
 			name = controllers;
+			sourceTree = "<group>";
+		};
+		87B2FD0A1BBA79E80078679E /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */,
+				87B2FD0B1BBA7A180078679E /* LaunchViewController.swift */,
+			);
+			name = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		87F050661BB8D935003976B6 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				87340D331BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift */,
 				87F0506F1BB8DCD0003976B6 /* MJRefresh */,
 			);
 			name = Utility;
@@ -528,6 +542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8721184F1BB102E80088B2B4 /* SignUpViewController.swift in Sources */,
+				87B2FD0C1BBA7A180078679E /* LaunchViewController.swift in Sources */,
 				87F050A91BB8DCD0003976B6 /* MJRefreshStateHeader.m in Sources */,
 				8721184D1BB102E80088B2B4 /* LoginViewController.swift in Sources */,
 				87F050AE1BB8DCD0003976B6 /* UIView+MJExtension.m in Sources */,
@@ -552,6 +567,7 @@
 				6EC946021B9691C7001A8943 /* ChatViewController.swift in Sources */,
 				87DFA6741BB446BE00DF4346 /* FadeInTransitionAnimator.swift in Sources */,
 				87F0509C1BB8DCD0003976B6 /* MJRefreshAutoFooter.m in Sources */,
+				87340D341BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift in Sources */,
 				87F0509F1BB8DCD0003976B6 /* MJRefreshFooter.m in Sources */,
 				87F050A61BB8DCD0003976B6 /* MJRefreshBackStateFooter.m in Sources */,
 				87F050AB1BB8DCD0003976B6 /* MJRefreshConst.m in Sources */,

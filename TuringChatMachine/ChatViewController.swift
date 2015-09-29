@@ -56,6 +56,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     var toolBar: UIToolbar!
     var textView: UITextView!
     var sendButton: UIButton!
+    var backGroundImage:UIImageView!
     var rotating = false
     var continuedActivity: NSUserActivity?
     var isFirstEnter = true
@@ -118,7 +119,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
     func initData(howMany7DaysBefore:Double){
 
         var index = 0
- 
+        
         let query:PFQuery = PFQuery(className:"Messages")
         if let user = PFUser.currentUser(){
             query.whereKey("createdBy", equalTo: user)
@@ -129,7 +130,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         }
         
         query.orderByAscending("sentDate")
-        //query.cachePolicy = PFCachePolicy.CacheThenNetwork
+        query.cachePolicy = PFCachePolicy.CacheThenNetwork
 
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             
@@ -146,8 +147,18 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
                
                     
                 }
-                self.tableView.reloadData()
                 
+                if howMany7DaysBefore == 0{
+                    self.tableView.reloadDataWithAnimate(AnimationDirect.FromRightToLeft, animationTime: 1.0, interval: 0.1)
+                }else{
+                self.tableView.reloadData()
+                }
+                        SVProgressHUD.dismiss()
+            
+            
+                if let header = self.tableView.header{
+            header.endRefreshing()
+        }
             }else{
                 print("Error \(error?.userInfo)")
             }
@@ -155,18 +166,21 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         
         
         
-     
-        
     }
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+       
         self.initData(howMany7DaysBefore)
-
+        
         //        tableView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+        backGroundImage = UIImageView(image: UIImage(named: "loginBackground"))
+   
+        self.tableView.backgroundView = backGroundImage
+        insertBlurView(self.tableView.backgroundView!, style: UIBlurEffectStyle.Light)
+        
         tableView.autoresizingMask = UIViewAutoresizing.FlexibleHeight
         
         self.tableView.keyboardDismissMode = .Interactive
@@ -177,6 +191,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
        let refreshHeader = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction:"refreshTriggered:")
         refreshHeader.ignoredScrollViewContentInsetTop = 18
   refreshHeader.lastUpdatedTimeLabel?.hidden = true
+        refreshHeader.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.White
        tableView.header = refreshHeader
         
        
@@ -231,11 +246,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         super.viewDidAppear(animated)
         tableView.flashScrollIndicators()
          self.navigationController?.navigationBarHidden = false
-        if isFirstEnter{
-       SVProgressHUD.dismiss()
-        }
-        isFirstEnter = !isFirstEnter
-        
+ 
     }
 
     //MARK:textView代理方法
@@ -313,6 +324,7 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         }
         cell.configureWithMessage(message,showSentDate:showSentDate)
         currentCellDate = message.sentDate
+        cell.backgroundColor = UIColor.clearColor()
         
         return cell
         
@@ -552,7 +564,7 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
     
         self.initData(++howMany7DaysBefore)
 
-        self.tableView.header.endRefreshing()
+        
     
     }
     // MARK: - Navigation

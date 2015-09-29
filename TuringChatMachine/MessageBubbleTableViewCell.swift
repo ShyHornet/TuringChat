@@ -27,7 +27,7 @@ class MessageBubbleTableViewCell:UITableViewCell{
         sentDateLabel.numberOfLines = 1
         sentDateLabel.userInteractionEnabled = false
         sentDateLabel.textAlignment = .Center
-        sentDateLabel.textColor = UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1)
+        sentDateLabel.textColor = UIColor(red:0.95, green:0.98, blue:0.99, alpha:1)
         
         sentDateLabelBackGroundView = UIView(frame: CGRectZero)
         sentDateLabelBackGroundView.backgroundColor = UIColor.grayColor()
