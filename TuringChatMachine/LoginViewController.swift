@@ -17,6 +17,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     @IBAction func unwindToLogInScreen(segue:UIStoryboardSegue) {
     }
+    @IBOutlet weak var backGround: UIImageView!
     override func viewWillAppear(animated: Bool) {
  
     
@@ -40,6 +41,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         loginPanle.velocity = 0.0
         loginPanle.force = 1.0
         loginPanle.animate()
+       
         
          
     }

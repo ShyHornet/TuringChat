@@ -16,6 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-BR-Gkm">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF5-3L-Fvb" customClass="SpringView" customModule="Spring">
                                 <rect key="frame" x="165" y="127" width="270" height="330"/>
                                 <subviews>
@@ -26,7 +30,7 @@
                                             <constraint firstAttribute="height" constant="30" id="I0k-90-9Cq"/>
                                             <constraint firstAttribute="width" constant="245" id="TT1-Ci-fz3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="robot" translatesAutoresizingMaskIntoConstraints="NO" id="4W9-3V-vaa">
@@ -46,7 +50,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="24"/>
                                         <state key="normal" title="重置密码">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
@@ -111,11 +115,15 @@
                             <constraint firstItem="hhv-Og-HU4" firstAttribute="leading" secondItem="0mw-F5-V1u" secondAttribute="leading" constant="554" id="AY4-uJ-BtJ"/>
                             <constraint firstAttribute="centerX" secondItem="hF5-3L-Fvb" secondAttribute="centerX" id="H5a-py-thu"/>
                             <constraint firstAttribute="trailing" secondItem="hhv-Og-HU4" secondAttribute="trailing" constant="16" id="QEn-XM-hkj"/>
+                            <constraint firstItem="Tfq-BR-Gkm" firstAttribute="centerX" secondItem="hF5-3L-Fvb" secondAttribute="centerX" id="VCb-11-W3U"/>
                             <constraint firstItem="RfN-LF-5Ps" firstAttribute="top" secondItem="hhv-Og-HU4" secondAttribute="bottom" constant="542" id="a5q-9Z-x3Z"/>
                             <constraint firstAttribute="trailing" secondItem="hhv-Og-HU4" secondAttribute="trailing" constant="16" id="ccp-0O-a0i"/>
                             <constraint firstAttribute="trailing" secondItem="hhv-Og-HU4" secondAttribute="trailing" constant="16" id="fHD-vf-vD9"/>
                             <constraint firstAttribute="centerY" secondItem="hF5-3L-Fvb" secondAttribute="centerY" constant="8" id="laC-ch-dKf"/>
+                            <constraint firstItem="Tfq-BR-Gkm" firstAttribute="top" secondItem="0mw-F5-V1u" secondAttribute="top" id="odr-kZ-V5k"/>
+                            <constraint firstItem="Tfq-BR-Gkm" firstAttribute="bottom" secondItem="RfN-LF-5Ps" secondAttribute="top" id="ssL-tw-a9C"/>
                             <constraint firstItem="hhv-Og-HU4" firstAttribute="top" secondItem="xa8-Rp-NUF" secondAttribute="bottom" constant="8" id="wSb-d6-rSy"/>
+                            <constraint firstItem="Tfq-BR-Gkm" firstAttribute="leading" secondItem="0mw-F5-V1u" secondAttribute="leading" id="zOH-h4-a2A"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -150,6 +158,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="xfF-TN-58y">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-Ye-BFH" customClass="SpringView" customModule="Spring">
                                 <rect key="frame" x="165" y="120" width="270" height="360"/>
                                 <subviews>
@@ -160,7 +172,7 @@
                                             <constraint firstAttribute="height" constant="30" id="NVy-eN-hEp"/>
                                             <constraint firstAttribute="width" constant="245" id="Rji-jO-DWJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIn-wW-qg4">
@@ -170,7 +182,7 @@
                                             <constraint firstAttribute="height" constant="30" id="0ss-nZ-Czd"/>
                                             <constraint firstAttribute="width" constant="245" id="Xxt-Mj-RqY"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar" translatesAutoresizingMaskIntoConstraints="NO" id="zJD-a7-y8O">
@@ -199,7 +211,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="15"/>
                                         <state key="normal" title="注册">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <variation key="default">
@@ -208,7 +220,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="rMA-Qa-Dfn" kind="presentation" identifier="signUpSegue" id="lFz-US-Dfx"/>
+                                            <segue destination="rMA-Qa-Dfn" kind="presentation" identifier="signUpSegue" modalPresentationStyle="currentContext" modalTransitionStyle="crossDissolve" id="lFz-US-Dfx"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="robot" translatesAutoresizingMaskIntoConstraints="NO" id="ncB-xP-Rxv">
@@ -236,11 +248,11 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="15"/>
                                         <state key="normal" title="忘记密码?">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="KVE-cM-mVc" kind="presentation" id="7cN-5j-MRa"/>
+                                            <segue destination="KVE-cM-mVc" kind="presentation" modalPresentationStyle="currentContext" modalTransitionStyle="crossDissolve" id="7cN-5j-MRa"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGv-H4-2DO">
@@ -252,7 +264,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="25"/>
                                         <state key="normal" title="登陆">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -304,11 +316,16 @@
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.40784313725490196" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="xfF-TN-58y" firstAttribute="bottom" secondItem="hc5-aR-wUr" secondAttribute="top" id="Lhi-Pt-fC6"/>
                             <constraint firstAttribute="centerY" secondItem="8ed-Ye-BFH" secondAttribute="centerY" id="Mzi-Zd-Ach"/>
+                            <constraint firstItem="xfF-TN-58y" firstAttribute="centerX" secondItem="8ed-Ye-BFH" secondAttribute="centerX" id="Tbh-bH-hvJ"/>
                             <constraint firstAttribute="centerX" secondItem="8ed-Ye-BFH" secondAttribute="centerX" id="dJv-Li-2Vt"/>
+                            <constraint firstItem="xfF-TN-58y" firstAttribute="centerY" secondItem="8ed-Ye-BFH" secondAttribute="centerY" id="qjI-Zh-EKn"/>
+                            <constraint firstItem="xfF-TN-58y" firstAttribute="leading" secondItem="gq4-fc-8qN" secondAttribute="leading" id="sE7-tJ-A4m"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backGround" destination="xfF-TN-58y" id="BkC-ox-Ppx"/>
                         <outlet property="loginPanle" destination="8ed-Ye-BFH" id="uo9-af-wcu"/>
                         <outlet property="password" destination="sr2-Qf-iN0" id="BlB-NG-8Wz"/>
                         <outlet property="username" destination="eIn-wW-qg4" id="acZ-cM-gf6"/>
@@ -330,6 +347,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="yOB-5r-P5t">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znj-c5-sYl">
                                 <rect key="frame" x="554" y="28" width="30" height="30"/>
                                 <animations/>
@@ -358,7 +379,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="245" id="bNs-hl-xxr"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4IT-7M-gza">
@@ -368,7 +389,7 @@
                                             <constraint firstAttribute="width" constant="245" id="LXK-e7-s3p"/>
                                             <constraint firstAttribute="height" constant="30" id="U2R-wm-25B"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVT-DP-MPG">
@@ -379,7 +400,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="24"/>
                                         <state key="normal" title="注册">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -409,7 +430,7 @@
                                             <constraint firstAttribute="height" constant="30" id="Do8-Og-2JR"/>
                                             <constraint firstAttribute="width" constant="245" id="lEb-h3-ahR"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="PingFangSC-Thin" family="PingFang SC" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
@@ -445,14 +466,18 @@
                         <animations/>
                         <color key="backgroundColor" red="0.99215686274509807" green="0.70588235294117652" blue="0.27843137254901962" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="yOB-5r-P5t" firstAttribute="bottom" secondItem="OBb-fH-P4c" secondAttribute="top" id="0pe-Wt-I8j"/>
                             <constraint firstAttribute="centerX" secondItem="QiR-tl-yjV" secondAttribute="centerX" id="131-vy-JjR"/>
+                            <constraint firstItem="yOB-5r-P5t" firstAttribute="leading" secondItem="F4y-ZN-vgE" secondAttribute="leading" id="2sm-aB-JmR"/>
                             <constraint firstItem="znj-c5-sYl" firstAttribute="leading" secondItem="F4y-ZN-vgE" secondAttribute="leading" constant="554" id="6ad-sL-v6t"/>
                             <constraint firstAttribute="trailing" secondItem="znj-c5-sYl" secondAttribute="trailing" constant="16" id="8Cy-Ls-wz1"/>
                             <constraint firstItem="znj-c5-sYl" firstAttribute="top" secondItem="9FF-9b-KJx" secondAttribute="bottom" constant="8" id="QNp-8c-D2r"/>
                             <constraint firstItem="znj-c5-sYl" firstAttribute="top" secondItem="9FF-9b-KJx" secondAttribute="bottom" constant="8" id="hC8-g3-XHB"/>
                             <constraint firstAttribute="centerY" secondItem="QiR-tl-yjV" secondAttribute="centerY" constant="9.5" id="lWP-1y-cCx"/>
                             <constraint firstItem="OBb-fH-P4c" firstAttribute="top" secondItem="znj-c5-sYl" secondAttribute="bottom" constant="542" id="nF6-by-Esn"/>
+                            <constraint firstItem="yOB-5r-P5t" firstAttribute="top" secondItem="F4y-ZN-vgE" secondAttribute="top" id="nOT-ea-bHq"/>
                             <constraint firstAttribute="trailing" secondItem="znj-c5-sYl" secondAttribute="trailing" constant="16" id="wRV-Uc-O7D"/>
+                            <constraint firstItem="yOB-5r-P5t" firstAttribute="centerX" secondItem="QiR-tl-yjV" secondAttribute="centerX" id="zmq-Vd-cnJ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -582,6 +607,7 @@
     <resources>
         <image name="bar" width="300" height="20"/>
         <image name="close-1" width="64" height="64"/>
+        <image name="loginBackground" width="367" height="667"/>
         <image name="robot" width="100" height="100"/>
         <image name="user" width="126" height="126"/>
     </resources>
