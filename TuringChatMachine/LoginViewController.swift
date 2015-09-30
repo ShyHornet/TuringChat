@@ -61,20 +61,26 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        password.delegate = self
-        username.delegate = self
-        
-       
         self.navigationController?.navigationBarHidden = true
-        password.secureTextEntry = true
-        password.returnKeyType = UIReturnKeyType.Done
+        setUpTextField()
+        
         let notificationCenter = NSNotificationCenter.defaultCenter()
          notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         
         // Do any additional setup after loading the view.
     }
-
+    func setUpTextField(){
+        password.delegate = self
+        username.delegate = self
+        username.addTextFieldLeftView("username", withLeftPandding: 10, andRightPandding: 10)
+        password.addTextFieldLeftView("userpassword", withLeftPandding:13.5, andRightPandding: 13.5)
+        
+        username.returnKeyType = .Next
+        password.secureTextEntry = true
+        password.returnKeyType = .Done
+    
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

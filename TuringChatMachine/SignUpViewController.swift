@@ -21,14 +21,21 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailField.delegate = self
-        usernameField.delegate = self
-        passwordField.delegate = self
+        setUpTexFields()
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
+    }
+    func setUpTexFields(){
+        emailField.delegate = self
+        usernameField.delegate = self
+        passwordField.delegate = self
+        usernameField.addTextFieldLeftView("username", withLeftPandding: 10, andRightPandding: 10)
+        passwordField.addTextFieldLeftView("userpassword", withLeftPandding:13.5, andRightPandding: 13.5)
+        emailField.addTextFieldLeftView("email", withLeftPandding: 10.5, andRightPandding: 10.5)
+        
     }
     func keyboardWillShow(notification: NSNotification) {
         

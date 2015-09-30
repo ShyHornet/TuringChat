@@ -19,6 +19,8 @@ class ResetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         panle.clipsToBounds = true
+        emailTextField.addTextFieldLeftView("email", withLeftPandding: 10.5, andRightPandding: 10.5)
+        
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)

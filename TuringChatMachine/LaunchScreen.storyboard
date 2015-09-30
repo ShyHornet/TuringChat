@@ -19,6 +19,26 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="robot" translatesAutoresizingMaskIntoConstraints="NO" id="nEJ-cO-dbX">
                                 <rect key="frame" x="200" y="200" width="200" height="200"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Avx-6F-VfB">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="100"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="150" id="JxW-vJ-E3K">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="100"/>
+                                    </constraint>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Avx-6F-VfB"/>
+                                        <exclude reference="JxW-vJ-E3K"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Avx-6F-VfB"/>
+                                        <include reference="JxW-vJ-E3K"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                         </subviews>
                         <animations/>

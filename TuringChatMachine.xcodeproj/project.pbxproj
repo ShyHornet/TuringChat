@@ -46,6 +46,7 @@
 		87F050AC1BB8DCD0003976B6 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F050971BB8DCD0003976B6 /* UIScrollView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		87F050AD1BB8DCD0003976B6 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F050991BB8DCD0003976B6 /* UIScrollView+MJRefresh.m */; settings = {ASSET_TAGS = (); }; };
 		87F050AE1BB8DCD0003976B6 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F0509B1BB8DCD0003976B6 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
+		87F31E2B1BBAE82B001FDE6E /* SHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F31E2A1BBAE82B001FDE6E /* SHTextField.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		87F050991BB8DCD0003976B6 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		87F0509A1BB8DCD0003976B6 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		87F0509B1BB8DCD0003976B6 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		87F31E2A1BBAE82B001FDE6E /* SHTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 			children = (
 				87340D331BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift */,
 				87F0506F1BB8DCD0003976B6 /* MJRefresh */,
+				87F31E2A1BBAE82B001FDE6E /* SHTextField.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				6EC946001B9691C7001A8943 /* MessageBubbleTableViewCell.swift in Sources */,
 				87F050A81BB8DCD0003976B6 /* MJRefreshNormalHeader.m in Sources */,
 				87F050A21BB8DCD0003976B6 /* MJRefreshAutoNormalFooter.m in Sources */,
+				87F31E2B1BBAE82B001FDE6E /* SHTextField.swift in Sources */,
 				87F0509D1BB8DCD0003976B6 /* MJRefreshBackFooter.m in Sources */,
 				87F050A31BB8DCD0003976B6 /* MJRefreshAutoStateFooter.m in Sources */,
 				87F050A71BB8DCD0003976B6 /* MJRefreshGifHeader.m in Sources */,

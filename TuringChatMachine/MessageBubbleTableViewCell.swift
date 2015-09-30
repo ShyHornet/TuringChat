@@ -74,7 +74,10 @@ class MessageBubbleTableViewCell:UITableViewCell{
     
         if showSentDate {
             sentDateLabel.text = formatDate(message.sentDate)
-           
+           contentView.needsUpdateConstraints()
+        }else {
+        sentDateLabel.text = nil
+        contentView.needsUpdateConstraints()
         }
         
         if message.url != ""{

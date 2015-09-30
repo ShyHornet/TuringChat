@@ -317,11 +317,13 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         showSentDate = true
         }
         let timeInterval = currentCellDate.timeIntervalSinceDate(message.sentDate)
-        
+        print(abs(timeInterval))
         
         if abs(timeInterval) > 60*3{
         showSentDate = true
         }
+        print("\(indexPath.row):\(showSentDate)")
+        
         cell.configureWithMessage(message,showSentDate:showSentDate)
         currentCellDate = message.sentDate
         cell.backgroundColor = UIColor.clearColor()

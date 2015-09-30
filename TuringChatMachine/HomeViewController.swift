@@ -29,7 +29,9 @@ class HomeViewController: UIViewController {
         avatarImageShowAnimation()
        
         if (PFUser.currentUser() == nil) {
+            logInStatus.textColor = UIColor.blackColor()
             logInStatus.text = "未登录"
+           
             usernameLabel.text = "无用户"
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -50,7 +52,9 @@ class HomeViewController: UIViewController {
             
             self.view.addSubview(spinner)
             spinner.startAnimating()
+            logInStatus.textColor = UIColor.blackColor()
             logInStatus.text = "登陆中"
+            
             if let name = PFUser.currentUser()?.username{
                 self.usernameLabel.text = "@" + name
             
@@ -95,7 +99,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         self.preferredStatusBarStyle()
-      
+      logInStatus.textColor = UIColor.blackColor()
         
        self.navigationController?.navigationBar.tintColor = UIColor(red:0.35, green:0.78, blue:0.92, alpha:1)
         super.viewDidLoad()
