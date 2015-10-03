@@ -49,10 +49,10 @@ let toolBarMinHeight: CGFloat = 44
 let textViewMaxHeight: (portrait: CGFloat, landscape: CGFloat) = (portrait: 272, landscape: 90)
 
 
-class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewControllerDelegate {
+class ChatViewController:UIViewController,UITextViewDelegate,SFSafariViewControllerDelegate {
     //MARK:属性定义
     
-    
+    var tableView:UITableView!
     var toolBar: UIToolbar!
     var textView: UITextView!
     var sendButton: UIButton!
@@ -130,18 +130,21 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         }
         
         query.orderByAscending("sentDate")
-        query.cachePolicy = PFCachePolicy.CacheThenNetwork
-
+        query.fromLocalDatastore()
+        
+        //query.cachePolicy = PFCachePolicy.CacheElseNetwork
+        
         query.findObjectsInBackgroundWithBlock { (objects, error) -> Void in
             
             if error == nil {
-                if howMany7DaysBefore == 0{
+                if howMany7DaysBefore <= 1{
+                    
                 self.messageObjects = objects as! [PFObject]
                 }else{
                 self.messageObjects.insertContentsOf(objects as! [PFObject], at: 0)
                     
                 }
-                if objects?.count == 0 && howMany7DaysBefore == 0{//如果是第一次登陆
+                if objects?.count == 0 && howMany7DaysBefore == 1{//如果是第一次登陆
                     let message = Message(incoming: true, text: "\(PFUser.currentUser()!.username!),你好!我是你的私人小助手，请叫我灵灵！", sentDate: NSDate())
                     self.saveMessage(message)
                
@@ -177,7 +180,12 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         
         //        tableView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         backGroundImage = UIImageView(image: UIImage(named: "loginBackground"))
-   
+       
+        self.tableView = UITableView(frame: self.view.bounds, style: UITableViewStyle.Plain)
+        self.view.addSubview(self.tableView)
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource  = self
         self.tableView.backgroundView = backGroundImage
         insertBlurView(self.tableView.backgroundView!, style: UIBlurEffectStyle.Light)
         
@@ -254,100 +262,14 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         updateTextViewHeight()
         sendButton.enabled = textView.hasText()
     }
-    //MARK:tableView代理方法
-    
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete{
-            deleteMessage(messageObjects[indexPath.row])
-        messageObjects.removeAtIndex(indexPath.row)
-            
-            tableView.reloadData()
-          
-        }
-    }
 
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        print("Selected At row \(indexPath.row)")
-        guard let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? MessageBubbleTableViewCell else{
-            
-            return nil
-        }
-        print("\(selectedCell.url)")
-        let url = selectedCell.url
-        
-        guard url != "" else{
-            return nil
-        }
-        
-        print(selectedCell.url)
-        let webVC = SFSafariViewController(URL: NSURL(string: url)!, entersReaderIfAvailable: true)
-        webVC.delegate = self
-        self.presentViewController(webVC, animated: true, completion: nil)
-        
-        
-        
-        return nil
-    }
-    @available(iOS 9.0, *)
+    
+       @available(iOS 9.0, *)
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     var currentCellDate:NSDate!
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        var showSentDate = false
-        let cellIdentifier = NSStringFromClass(MessageBubbleTableViewCell)
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MessageBubbleTableViewCell!
-        if cell == nil {
-            
-            cell = MessageBubbleTableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            
-        }
-        let object =  messageObjects[indexPath.row]
-        let message = Message(incoming:object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
-        if let url = object["url"] as? String{
-            message.url = url
-        }
-        if indexPath.row == 0{
-        currentCellDate = message.sentDate
-        showSentDate = true
-        }
-        let timeInterval = currentCellDate.timeIntervalSinceDate(message.sentDate)
-        print(abs(timeInterval))
-        
-        if abs(timeInterval) > 60*3{
-        showSentDate = true
-        }
-        print("\(indexPath.row):\(showSentDate)")
-        
-        cell.configureWithMessage(message,showSentDate:showSentDate)
-        currentCellDate = message.sentDate
-        cell.backgroundColor = UIColor.clearColor()
-        
-        return cell
-        
-        
-    }
-
-    
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return 1
-        
-    }
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
-        if messageObjects.count > 0{
-            return messageObjects.count
-        }else{
-            return 0
-        }
-    }
     
     
     //MARK:发送操作及帮助方法
@@ -361,13 +283,22 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         let user = PFUser.currentUser()
         saveObject["createdBy"] = user
         messageObjects.append(saveObject)
+        saveObject.pinInBackgroundWithBlock { (success, error) -> Void in
+            if success{
+                print("消息本地保存成功!")
+            }else{
+                
+                print("消息本地保存失败! \(error)")
+                
+            }
+        }
         saveObject.saveEventually { (success, error) -> Void in
             
             if success{
-                print("消息保存成功!")
+                print("消息云端保存成功!")
             }else{
                 
-                print("消息保存失败! \(error)")
+                print("消息云端保存失败! \(error)")
                 
             }
         }
@@ -375,13 +306,22 @@ class ChatViewController:UITableViewController,UITextViewDelegate,SFSafariViewCo
         
     }
     func deleteMessage(message:PFObject){
+        message.unpinInBackgroundWithBlock { (success, error) -> Void in
+            guard  error == nil else{
+                print("本地删除失败! \(error?.userInfo)")
+                return
+                
+            }
+            print("本地删除成功!")
+        
+        }
 message.deleteInBackgroundWithBlock { (success, error) -> Void in
         guard  error == nil else{
-            print("保存失败! \(error?.userInfo)")
+            print("云端删除失败! \(error?.userInfo)")
             return
     
             }
-            print("保存成功!")
+            print("云端删除成功!")
         }
     
     }
@@ -408,6 +348,7 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
         self.tableViewScrollToBottomAnimated(false)
         
         Alamofire.request(.GET, NSURL(string: api_url)!, parameters: ["key":api_key,"info":question,"userid":PFUser.currentUser()!.objectId! as String]).responseJSON(options: NSJSONReadingOptions.MutableContainers) { _,_,data   in
+            print(data.value)
             
             
             guard data.isSuccess else{
@@ -587,4 +528,96 @@ class InputTextView: UITextView {
     
     
     
+}
+    //MARK:tableView代理方法
+extension ChatViewController:UITableViewDataSource,UITableViewDelegate{
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete{
+            deleteMessage(messageObjects[indexPath.row])
+            messageObjects.removeAtIndex(indexPath.row)
+            
+            tableView.reloadData()
+            
+        }
+    }
+    
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        print("Selected At row \(indexPath.row)")
+        guard let selectedCell = tableView.cellForRowAtIndexPath(indexPath) as? MessageBubbleTableViewCell else{
+            
+            return nil
+        }
+        print("\(selectedCell.url)")
+        let url = selectedCell.url
+        
+        guard url != "" else{
+            return nil
+        }
+        
+        print(selectedCell.url)
+        let webVC = SFSafariViewController(URL: NSURL(string: url)!, entersReaderIfAvailable: true)
+        webVC.delegate = self
+        self.presentViewController(webVC, animated: true, completion: nil)
+        
+        
+        
+        return nil
+    }
+     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var showSentDate = false
+        let cellIdentifier = NSStringFromClass(MessageBubbleTableViewCell)
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MessageBubbleTableViewCell!
+        if cell == nil {
+            
+            cell = MessageBubbleTableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            
+        }
+        let object =  messageObjects[indexPath.row]
+        let message = Message(incoming:object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
+        if let url = object["url"] as? String{
+            message.url = url
+        }
+        if indexPath.row == 0{
+            currentCellDate = message.sentDate
+            showSentDate = true
+        }
+        let timeInterval = currentCellDate.timeIntervalSinceDate(message.sentDate)
+        print(abs(timeInterval))
+        
+        if abs(timeInterval) > 60*3{
+            showSentDate = true
+        }
+        print("\(indexPath.row):\(showSentDate)")
+        
+        cell.configureWithMessage(message,showSentDate:showSentDate)
+        currentCellDate = message.sentDate
+        cell.backgroundColor = UIColor.clearColor()
+        
+        return cell
+        
+        
+    }
+    
+    
+    
+     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        return 1
+        
+    }
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if messageObjects.count > 0{
+            return messageObjects.count
+        }else{
+            return 0
+        }
+    }
+
+
+
 }

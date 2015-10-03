@@ -21,9 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
- 
+        Parse.enableLocalDatastore()
         Parse.setApplicationId("CYdFL9mvG8jHqc4ZA5PJsWMInBbMMun0XCoqnHgf", clientKey: "6tGOC1uIKeYp5glvJE6MXZOWG9pmLtMuIUdh2Yzo")
-
+        
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions) { (success, Error) -> Void in
             guard success else{
                print("Analytics failed! \(Error?.userInfo)")
