@@ -47,6 +47,7 @@
 		87F050AD1BB8DCD0003976B6 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F050991BB8DCD0003976B6 /* UIScrollView+MJRefresh.m */; settings = {ASSET_TAGS = (); }; };
 		87F050AE1BB8DCD0003976B6 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F0509B1BB8DCD0003976B6 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		87F31E2B1BBAE82B001FDE6E /* SHTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F31E2A1BBAE82B001FDE6E /* SHTextField.swift */; settings = {ASSET_TAGS = (); }; };
+		87FB7E971BC69013003B07CE /* TRChatRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB7E961BC69013003B07CE /* TRChatRequestManager.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		87F0509A1BB8DCD0003976B6 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		87F0509B1BB8DCD0003976B6 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		87F31E2A1BBAE82B001FDE6E /* SHTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHTextField.swift; sourceTree = "<group>"; };
+		87FB7E961BC69013003B07CE /* TRChatRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRChatRequestManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		6EC945CB1B968F71001A8943 = {
 			isa = PBXGroup;
 			children = (
+				87FB7E961BC69013003B07CE /* TRChatRequestManager.swift */,
 				87F050661BB8D935003976B6 /* Utility */,
 				87925A521BB3A1A500847703 /* MJRefresh-Bridge-header.h */,
 				6EC945F91B968FD5001A8943 /* Podfile */,
@@ -575,6 +578,7 @@
 				87F0509F1BB8DCD0003976B6 /* MJRefreshFooter.m in Sources */,
 				87F050A61BB8DCD0003976B6 /* MJRefreshBackStateFooter.m in Sources */,
 				87F050AB1BB8DCD0003976B6 /* MJRefreshConst.m in Sources */,
+				87FB7E971BC69013003B07CE /* TRChatRequestManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

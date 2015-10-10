@@ -176,6 +176,7 @@ class ChatViewController:UIViewController,UITextViewDelegate,SFSafariViewControl
         
         super.viewDidLoad()
        
+        
         self.initData(howMany7DaysBefore)
         
         //        tableView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
@@ -246,12 +247,18 @@ class ChatViewController:UIViewController,UITextViewDelegate,SFSafariViewControl
         SVProgressHUD.showWithStatus("加载聊天记录...")
         }
         
-        
+        isFirstEnter = false
         
         
     }
     override func viewDidAppear(animated: Bool)  {
         super.viewDidAppear(animated)
+        TRChatRequestManager.sharedManager.requestMessage("今天北京到天津的火车", handler: { (type, message) -> Void in
+            
+            print(type)
+            print((message as! trainMessage).trains)
+            
+         })
         tableView.flashScrollIndicators()
          self.navigationController?.navigationBarHidden = false
  
@@ -330,11 +337,13 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
         var question = ""
         var answer = ""
         
+         question = textView.text
         let message = Message(incoming: false, text: textView.text, sentDate: NSDate())
+        self.createUserActivity(messageObjects.count - 1, text:question, url: "")
         saveMessage(message)
 
         
-        question = textView.text
+       
         
         
         textView.text = nil
@@ -346,54 +355,58 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
             ], withRowAnimation: .Left)
         self.tableView.endUpdates()
         self.tableViewScrollToBottomAnimated(false)
+     TRChatRequestManager.sharedManager.requestMessage(question) { (type, message) -> Void in
+        switch (type){
+            
+        case .text:
+            let answer = (message as! textMessage).answer as String
+            let message = Message(incoming: true, text:answer , sentDate: NSDate())
+            self.saveMessage(message)
+            self.createUserActivity(self.messageObjects.count - 1 ,text:answer, url:"")
+            
+            break
+        case .link:
+            
+            let answer = (message as! linkMessage).answer as String
+            let url = (message as! linkMessage).url as String
+            let message = Message(incoming: true, text:answer , sentDate: NSDate())
+        message.url = url
+            print(message)
+           
+            self.saveMessage(message)
+            self.createUserActivity(self.messageObjects.count - 1 ,text:answer, url:url)
+            
+            break
+        case .trains:
+            
         
-        Alamofire.request(.GET, NSURL(string: api_url)!, parameters: ["key":api_key,"info":question,"userid":PFUser.currentUser()!.objectId! as String]).responseJSON(options: NSJSONReadingOptions.MutableContainers) { _,_,data   in
-            print(data.value)
+            break
+        case .news:
             
+            break
+        case .recipes:
+       
+            break
+        default: break
             
-            guard data.isSuccess else{
-                print("Data read error \(data.error)")
-                return
-            }
-            
-            guard let text = data.value!.objectForKey("text") as? String else{
-                print("Text is nil!")
-                return
-            }
-            answer = text
-            if let url = data.value!.objectForKey("url") as? String {
-                let message = Message(incoming: true,
-                    text:text+"\n(点击该消息打开查看)",
-                    sentDate: NSDate())
-                message.url = url
-                self.saveMessage(message)
-
-                self.createUserActivity(self.messageObjects.count - 1, question: question, answer:answer, url: url)
-                
-            }else{
-                
-                let message = Message(incoming: true, text:text, sentDate: NSDate())
-                self.saveMessage(message)
-
-                self.createUserActivity(self.messageObjects.count - 1 , question: question, answer:answer, url:"")
-                
-            }
-            self.tableView.beginUpdates()
-            self.tableView.insertRowsAtIndexPaths([
-                NSIndexPath(forRow:self.tableView.numberOfRowsInSection(0) , inSection:0)
-                ], withRowAnimation:.Left)
-            self.tableView.endUpdates()
-            self.tableViewScrollToBottomAnimated(false)
             
         }
+        self.tableView.beginUpdates()
+        self.tableView.insertRowsAtIndexPaths([
+            NSIndexPath(forRow:self.tableView.numberOfRowsInSection(0) , inSection:0)
+            ], withRowAnimation:.Left)
+        self.tableView.endUpdates()
+        self.tableViewScrollToBottomAnimated(false)
+        }
+
         
     }
-    func createUserActivity(index:Int,question:String,answer:String,url:String){
+    func createUserActivity(index:Int,text:String,url:String){
         let myActivity = NSUserActivity(activityType: "com.codeGlider.TuringChatMachine.chat")//1
-        myActivity.title = "Q:\(question)\nA:\(answer)" // 2
+        myActivity.title = "\(text)" // 2
         myActivity.eligibleForSearch = true // 4
         
-        myActivity.keywords = Set(arrayLiteral:question,answer) // 5
+        myActivity.keywords = Set(arrayLiteral:text) // 5
         self.userActivity = myActivity // 6
         if url != ""{
             self.userActivity?.userInfo = ["index":index]
