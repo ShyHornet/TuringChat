@@ -17,13 +17,14 @@
 		6EC946021B9691C7001A8943 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC945FE1B9691C7001A8943 /* ChatViewController.swift */; };
 		75B334B0CA33BB4B8729CE53 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 127F756A1F6DCE74E2B2AE10 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		872118451BB0F4210088B2B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872118441BB0F4210088B2B4 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		8721184B1BB102E80088B2B4 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872118461BB102E80088B2B4 /* Extension.swift */; settings = {ASSET_TAGS = (); }; };
+		8721184B1BB102E80088B2B4 /* Extension&util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872118461BB102E80088B2B4 /* Extension&util.swift */; settings = {ASSET_TAGS = (); }; };
 		8721184C1BB102E80088B2B4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872118471BB102E80088B2B4 /* HomeViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8721184D1BB102E80088B2B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872118481BB102E80088B2B4 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8721184E1BB102E80088B2B4 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872118491BB102E80088B2B4 /* ResetPasswordViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8721184F1BB102E80088B2B4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721184A1BB102E80088B2B4 /* SignUpViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		872118511BB13EBB0088B2B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
 		87340D341BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87340D331BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift */; settings = {ASSET_TAGS = (); }; };
+		8758F2DE1BC8AFB30067FE1D /* MutiMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8758F2DC1BC8AFB30067FE1D /* MutiMessageTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		87B2FD0C1BBA7A180078679E /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B2FD0B1BBA7A180078679E /* LaunchViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		87D1C6441BAFB6BF009B8AFA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87D1C6431BAFB6BF009B8AFA /* CloudKit.framework */; };
 		87DFA6741BB446BE00DF4346 /* FadeInTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DFA6731BB446BE00DF4346 /* FadeInTransitionAnimator.swift */; settings = {ASSET_TAGS = (); }; };
@@ -77,13 +78,14 @@
 		6EC945FE1B9691C7001A8943 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		735D6E07674705CBE9DA6651 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		872118441BB0F4210088B2B4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		872118461BB102E80088B2B4 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		872118461BB102E80088B2B4 /* Extension&util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension&util.swift"; sourceTree = "<group>"; };
 		872118471BB102E80088B2B4 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		872118481BB102E80088B2B4 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		872118491BB102E80088B2B4 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		8721184A1BB102E80088B2B4 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		872118501BB13EBB0088B2B4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87340D331BBA6B9B00878B39 /* UITabelViewLoadAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITabelViewLoadAnimation.swift; sourceTree = "<group>"; };
+		8758F2DC1BC8AFB30067FE1D /* MutiMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MutiMessageTableViewCell.swift; path = ../MutiMessageTableViewCell.swift; sourceTree = "<group>"; };
 		87925A521BB3A1A500847703 /* MJRefresh-Bridge-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJRefresh-Bridge-header.h"; sourceTree = "<group>"; };
 		87B2FD0B1BBA7A180078679E /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		87D1C6421BAFB1E0009B8AFA /* TuringChatMachine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TuringChatMachine.entitlements; sourceTree = "<group>"; };
@@ -166,7 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				87DFA6731BB446BE00DF4346 /* FadeInTransitionAnimator.swift */,
-				872118461BB102E80088B2B4 /* Extension.swift */,
+				872118461BB102E80088B2B4 /* Extension&util.swift */,
 				872118471BB102E80088B2B4 /* HomeViewController.swift */,
 				872118481BB102E80088B2B4 /* LoginViewController.swift */,
 				872118491BB102E80088B2B4 /* ResetPasswordViewController.swift */,
@@ -179,6 +181,7 @@
 		6E0923581BA7A98A00C498C1 /* chatPage */ = {
 			isa = PBXGroup;
 			children = (
+				8758F2DC1BC8AFB30067FE1D /* MutiMessageTableViewCell.swift */,
 				6EC945FC1B9691C7001A8943 /* MessageBubbleTableViewCell.swift */,
 				6EC945FE1B9691C7001A8943 /* ChatViewController.swift */,
 			);
@@ -553,7 +556,7 @@
 				8721184D1BB102E80088B2B4 /* LoginViewController.swift in Sources */,
 				87F050AE1BB8DCD0003976B6 /* UIView+MJExtension.m in Sources */,
 				6EC945FF1B9691C7001A8943 /* Message.swift in Sources */,
-				8721184B1BB102E80088B2B4 /* Extension.swift in Sources */,
+				8721184B1BB102E80088B2B4 /* Extension&util.swift in Sources */,
 				87F050AD1BB8DCD0003976B6 /* UIScrollView+MJRefresh.m in Sources */,
 				8721184C1BB102E80088B2B4 /* HomeViewController.swift in Sources */,
 				87F050A51BB8DCD0003976B6 /* MJRefreshBackNormalFooter.m in Sources */,
@@ -570,6 +573,7 @@
 				87F050A41BB8DCD0003976B6 /* MJRefreshBackGifFooter.m in Sources */,
 				87F0509E1BB8DCD0003976B6 /* MJRefreshComponent.m in Sources */,
 				8721184E1BB102E80088B2B4 /* ResetPasswordViewController.swift in Sources */,
+				8758F2DE1BC8AFB30067FE1D /* MutiMessageTableViewCell.swift in Sources */,
 				87F050A01BB8DCD0003976B6 /* MJRefreshHeader.m in Sources */,
 				6EC946021B9691C7001A8943 /* ChatViewController.swift in Sources */,
 				87DFA6741BB446BE00DF4346 /* FadeInTransitionAnimator.swift in Sources */,

@@ -14,9 +14,7 @@ typealias newsType = (article:String,detailurl:String,icon:String,source:String)
 typealias trainsType = (detailurl:String,endtime:String,icon:String,start:String,starttime:String,terminal:String,trainnum:String)
 typealias recipeType = (name:String,info:String,detailurl:String,icon:String)
 
-public class TRChatRequestManager{
-    
-    public enum messageType:String{
+public enum messageType:String{
         case text = "100000"
         case link = "200000"
         case news = "302000"
@@ -24,6 +22,10 @@ public class TRChatRequestManager{
         case recipes = "308000"
         
     }
+
+public class TRChatRequestManager{
+    
+    
 
     
     
@@ -110,7 +112,7 @@ public class TRChatRequestManager{
                     
                 }
                 self.message = newsMessage(answer: answer, news: news)
-                print("\(self.type) : \((self.message as! newsMessage).news)")
+//                print("\(self.type) : \((self.message as! newsMessage).news)")
                 break
             case .recipes:
                 var recipes:[recipeType] = []
@@ -128,7 +130,7 @@ public class TRChatRequestManager{
                 }
                 self.message = recipeMessage(answer: answer, recipes: recipes)
                 
-                print("\(self.type) : \((self.message as! recipeMessage).recipes)")
+//                print("\(self.type) : \((self.message as! recipeMessage).recipes)")
                 break
             default: break
                 

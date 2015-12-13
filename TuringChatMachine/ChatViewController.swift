@@ -130,7 +130,7 @@ class ChatViewController:UIViewController,UITextViewDelegate,SFSafariViewControl
         }
         
         query.orderByAscending("sentDate")
-        query.fromLocalDatastore()
+        //query.fromLocalDatastore()
         
         //query.cachePolicy = PFCachePolicy.CacheElseNetwork
         
@@ -145,7 +145,7 @@ class ChatViewController:UIViewController,UITextViewDelegate,SFSafariViewControl
                     
                 }
                 if objects?.count == 0 && howMany7DaysBefore == 1{//如果是第一次登陆
-                    let message = Message(incoming: true, text: "\(PFUser.currentUser()!.username!),你好!我是你的私人小助手，请叫我灵灵！", sentDate: NSDate())
+                    let message = Message(messageType:messageType.text.rawValue , incoming: true, text: "\(PFUser.currentUser()!.username!),你好!我是你的私人小助手，请叫我灵灵！",contents:"\(PFUser.currentUser()!.username!),你好!我是你的私人小助手，请叫我灵灵！".dataUsingEncoding(NSUTF8StringEncoding)!, sentDate: NSDate())
                     self.saveMessage(message)
                
                     
@@ -253,12 +253,12 @@ class ChatViewController:UIViewController,UITextViewDelegate,SFSafariViewControl
     }
     override func viewDidAppear(animated: Bool)  {
         super.viewDidAppear(animated)
-        TRChatRequestManager.sharedManager.requestMessage("今天北京到天津的火车", handler: { (type, message) -> Void in
-            
-            print(type)
-            print((message as! trainMessage).trains)
-            
-         })
+//        TRChatRequestManager.sharedManager.requestMessage("今天北京到天津的火车", handler: { (type, message) -> Void in
+//            
+//            print(type)
+//            print((message as! trainMessage).trains)
+//            
+//         })
         tableView.flashScrollIndicators()
          self.navigationController?.navigationBarHidden = false
  
@@ -281,14 +281,24 @@ class ChatViewController:UIViewController,UITextViewDelegate,SFSafariViewControl
     
     //MARK:发送操作及帮助方法
     func saveMessage(message:Message){
+        
         let saveObject = PFObject(className: "Messages")
         saveObject["incoming"] = message.incoming
         saveObject["text"] = message.text
         saveObject["sentDate"] = message.sentDate
         saveObject["url"] = message.url
-        
+        saveObject["messageType"] = message.messageType
+        let file = PFFile(data: message.contents)
         let user = PFUser.currentUser()
         saveObject["createdBy"] = user
+        saveObject["contents"] = file
+            
+            
+        
+        
+        
+        
+        
         messageObjects.append(saveObject)
         saveObject.pinInBackgroundWithBlock { (success, error) -> Void in
             if success{
@@ -299,7 +309,7 @@ class ChatViewController:UIViewController,UITextViewDelegate,SFSafariViewControl
                 
             }
         }
-        saveObject.saveEventually { (success, error) -> Void in
+        saveObject.saveInBackgroundWithBlock { (success, error) -> Void in
             
             if success{
                 print("消息云端保存成功!")
@@ -336,9 +346,12 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
     func sendAction() {
         var question = ""
         var answer = ""
+    
         
-         question = textView.text
-        let message = Message(incoming: false, text: textView.text, sentDate: NSDate())
+         question = textView.text!
+        let data = question.dataUsingEncoding(NSUTF8StringEncoding)!
+        
+        let message = Message(messageType:messageType.text.rawValue , incoming: false, text:question,contents:data,sentDate: NSDate())
         self.createUserActivity(messageObjects.count - 1, text:question, url: "")
         saveMessage(message)
 
@@ -360,37 +373,58 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
             
         case .text:
             let answer = (message as! textMessage).answer as String
-            let message = Message(incoming: true, text:answer , sentDate: NSDate())
-            self.saveMessage(message)
+            let messageToSave = Message(messageType:messageType.text.rawValue, incoming: true, text:answer ,contents:answer.dataUsingEncoding(NSUTF8StringEncoding)!, sentDate: NSDate())
+            self.saveMessage(messageToSave)
             self.createUserActivity(self.messageObjects.count - 1 ,text:answer, url:"")
             
             break
         case .link:
             
             let answer = (message as! linkMessage).answer as String
-            let url = (message as! linkMessage).url as String
-            let message = Message(incoming: true, text:answer , sentDate: NSDate())
-        message.url = url
-            print(message)
+            let url =  (message as! linkMessage).url as String
+            let urlData = url.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            let messageToSave = Message(messageType: messageType.link.rawValue,incoming: true, text:answer ,contents:urlData!, sentDate: NSDate())
+      
            
-            self.saveMessage(message)
+           
+            self.saveMessage(messageToSave)
             self.createUserActivity(self.messageObjects.count - 1 ,text:answer, url:url)
             
             break
         case .trains:
+            let answer = (message as! trainMessage).answer
+            let contents = (message as! trainMessage).trains as! AnyObject
+            
+            let messageToSave = Message(messageType: messageType.trains.rawValue, incoming: true, text: answer,contents:archiveObject(contents), sentDate: NSDate())
+            //let messageContents = NSKeyedUnarchiver.unarchiveObjectWithData(messageToSave.contents) as! [trainsType]
+            
+            self.saveMessage(messageToSave)
+            self.createUserActivity(self.messageObjects.count - 1 ,text:answer, url:"")
             
         
             break
         case .news:
-            
+            let answer = (message as! newsMessage).answer
+            let contents = (message as! newsMessage).news as! AnyObject
+            let messageToSave = Message(messageType: messageType.news.rawValue, incoming: true, text: answer,contents:archiveObject(contents), sentDate: NSDate())
+            self.saveMessage(messageToSave)
+            print(messageToSave)
+            self.createUserActivity(self.messageObjects.count - 1 ,text:answer, url:"")
             break
         case .recipes:
-       
+            let answer = (message as! newsMessage).answer
+            let contents = (message as! newsMessage).news as! AnyObject
+            let messageToSave = Message(messageType: messageType.news.rawValue, incoming: true, text: answer,contents:archiveObject(contents), sentDate: NSDate())
+            self.saveMessage(messageToSave)
+            self.createUserActivity(self.messageObjects.count - 1 ,text:answer, url:"")
+
             break
         default: break
             
             
         }
+        
         self.tableView.beginUpdates()
         self.tableView.insertRowsAtIndexPaths([
             NSIndexPath(forRow:self.tableView.numberOfRowsInSection(0) , inSection:0)
@@ -401,6 +435,7 @@ message.deleteInBackgroundWithBlock { (success, error) -> Void in
 
         
     }
+   
     func createUserActivity(index:Int,text:String,url:String){
         let myActivity = NSUserActivity(activityType: "com.codeGlider.TuringChatMachine.chat")//1
         myActivity.title = "\(text)" // 2
@@ -581,19 +616,11 @@ extension ChatViewController:UITableViewDataSource,UITableViewDelegate{
     }
      func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        
         var showSentDate = false
-        let cellIdentifier = NSStringFromClass(MessageBubbleTableViewCell)
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MessageBubbleTableViewCell!
-        if cell == nil {
-            
-            cell = MessageBubbleTableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
-            
-        }
         let object =  messageObjects[indexPath.row]
-        let message = Message(incoming:object["incoming"] as! Bool, text: object["text"] as! String, sentDate: object["sentDate"] as! NSDate)
-        if let url = object["url"] as? String{
-            message.url = url
-        }
+        
+        let message = Message(messageType:object["messageType"] as! String, incoming:object["incoming"] as! Bool, text: object["text"] as! String,contents:(object["contents"] as! PFFile).getData()!, sentDate: object["sentDate"] as! NSDate)
         if indexPath.row == 0{
             currentCellDate = message.sentDate
             showSentDate = true
@@ -604,14 +631,41 @@ extension ChatViewController:UITableViewDataSource,UITableViewDelegate{
         if abs(timeInterval) > 60*3{
             showSentDate = true
         }
-        print("\(indexPath.row):\(showSentDate)")
+        let cellIdentifier:String
+   
         
-        cell.configureWithMessage(message,showSentDate:showSentDate)
-        currentCellDate = message.sentDate
-        cell.backgroundColor = UIColor.clearColor()
+        if message.messageType == messageType.text.rawValue || message.messageType == messageType.link.rawValue{
+            cellIdentifier =  NSStringFromClass(MessageBubbleTableViewCell)
+            
+           var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MessageBubbleTableViewCell!
+            if cell == nil {
+                
+                cell = MessageBubbleTableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+                
+            }
+            cell.configureWithMessage(message,showSentDate:showSentDate)
+            currentCellDate = message.sentDate
+            cell.backgroundColor = UIColor.clearColor()
+           return cell
+            
+        }else{
+            
+            cellIdentifier =  NSStringFromClass(MutiMessageTableViewCell)
+            
+            var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! MutiMessageTableViewCell!
+            if cell == nil {
+                
+                cell = MutiMessageTableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+                
+            }
+            cell.configureWithMutiMessage(message,showSentDate:showSentDate)
+            currentCellDate = message.sentDate
+            cell.backgroundColor = UIColor.clearColor()
+            return cell
         
-        return cell
-        
+        }
+      
+      
         
     }
     

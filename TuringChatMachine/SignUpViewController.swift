@@ -22,6 +22,7 @@ class SignUpViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTexFields()
+        insertBlurView(panle, style: UIBlurEffectStyle.Light)
         
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)

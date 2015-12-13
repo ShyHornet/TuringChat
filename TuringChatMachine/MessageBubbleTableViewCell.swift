@@ -9,7 +9,6 @@ class MessageBubbleTableViewCell:UITableViewCell{
     let bubbleImageView: UIImageView
     let messageLabel: UILabel
     let sentDateLabel:UILabel
-    let sentDateLabelBackGroundView:UIView
      var url = ""
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 
@@ -29,10 +28,6 @@ class MessageBubbleTableViewCell:UITableViewCell{
         sentDateLabel.textAlignment = .Center
         sentDateLabel.textColor = UIColor(red:0.95, green:0.98, blue:0.99, alpha:1)
         
-        sentDateLabelBackGroundView = UIView(frame: CGRectZero)
-        sentDateLabelBackGroundView.backgroundColor = UIColor.grayColor()
-        sentDateLabelBackGroundView.alpha = 0.6
-        sentDateLabelBackGroundView.layer.cornerRadius = 2
         
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
         selectionStyle = .None
@@ -79,9 +74,11 @@ class MessageBubbleTableViewCell:UITableViewCell{
         sentDateLabel.text = nil
         contentView.needsUpdateConstraints()
         }
+        print(message.contents)
         
-        if message.url != ""{
-        url = message.url
+        if message.messageType == messageType.link.rawValue{
+        url = NSString.init(data:message.contents, encoding: NSUTF8StringEncoding) as! String
+        
         }
 
 

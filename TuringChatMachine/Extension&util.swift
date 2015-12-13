@@ -16,6 +16,7 @@ extension String{
     }
     
 }
+
 extension UITextField{
 
     func addTextFieldLeftView(withImageName:String,withLeftPandding:CGFloat,andRightPandding:CGFloat){
@@ -36,6 +37,18 @@ extension UITextField{
         
         
     }
+}
+//MARK:数据打包、解包
+func archiveObject(object:AnyObject)->NSData{
+    
+    return NSKeyedArchiver.archivedDataWithRootObject(object)
+    
+}
+func unarchiveObject(data:NSData)->AnyObject{
+    
+    let coder = NSCoder()
+    return NSKeyedUnarchiver.unarchiveObjectWithData(data)!
+    
 }
 func formatDate(date: NSDate) -> String {
     let calendar = NSCalendar.currentCalendar()

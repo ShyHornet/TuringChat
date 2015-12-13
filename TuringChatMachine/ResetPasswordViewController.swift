@@ -19,6 +19,8 @@ class ResetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         panle.clipsToBounds = true
+        insertBlurView(panle, style: UIBlurEffectStyle.Light)
+        
         emailTextField.addTextFieldLeftView("email", withLeftPandding: 10.5, andRightPandding: 10.5)
         
         let notificationCenter = NSNotificationCenter.defaultCenter()

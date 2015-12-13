@@ -5,31 +5,17 @@ class Message {
     let incoming: Bool
     let text: String
     let sentDate: NSDate
+    let messageType:String
+    var contents:NSData
     var url = ""
-    init(incoming: Bool, text: String, sentDate: NSDate) {
+    init(messageType:String,incoming: Bool, text: String,contents:NSData, sentDate: NSDate) {
         self.incoming = incoming
         self.text = text
         self.sentDate = sentDate
-    }
-}
-class MessageObject:PFObject,PFSubclassing{
-    @NSManaged var incoming:Bool
-    @NSManaged var text:String
-    @NSManaged var sentDate:NSDate
-    @NSManaged var url:String
+        self.messageType = messageType
+        self.contents = contents
+        
+        
+   }
     
-    override class func initialize() {
-        struct Static {
-            static var onceToken : dispatch_once_t = 0;
-        }
-        dispatch_once(&Static.onceToken) {
-            self.registerSubclass()
-        }
-    }
-    
-    
-    static func parseClassName() -> String {
-        return "Message"
-    }
-
 }

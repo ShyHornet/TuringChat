@@ -63,7 +63,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
         setUpTextField()
-        
+        insertBlurView(loginPanle, style: UIBlurEffectStyle.Light)  
         let notificationCenter = NSNotificationCenter.defaultCenter()
          notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
